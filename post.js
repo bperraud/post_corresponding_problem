@@ -3,24 +3,31 @@ class Instance {
     this.size = size;
     this.width = width;
     this.alphabet = alphabet;
-    this.pairs = pairs;
+    this.pairs = pairs; // liste des blocs (ordre pas important + pas de duplication)
     }
 
+    // 1 si l'instance possède une solution, 0 sinon, -1 si on ne sait pas
     isSolvable(){
         return 1;
     }
 }
 
+// un bloc
 class Pair {
     constructor(top, bottom){
-    this.top = top;
-    this.bottom = bottom;  
+    this.top = top;     // string (ou mot) du dessus
+    this.bottom = bottom;   // string du dessous
     }  
 }
     
 class Solution {
     constructor(pairs){
-        this.pairs = pairs;
+        this.pairs = pairs; // liste des blocs (ordre important + duplication possible)
+    }
+
+    // ajoute à l'indice index dans la liste
+    add(index) {
+
     }
 
     //ajoute a la fin de la liste
@@ -38,6 +45,7 @@ class Solution {
 
     }
 
+    // 1 si la liste this.pairs forme une solution du problème de Post, 0 sinon
     isWon() {
         return 1;
     }
