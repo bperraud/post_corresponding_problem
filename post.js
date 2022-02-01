@@ -5,9 +5,7 @@ class Instance {
     this.pairs = pairs;
     }
       
-    isWon() {
-      return 1;
-    }  
+
 
 }
 
@@ -19,7 +17,9 @@ class Pair {
 }
     
 class Solution {
-
+    isWon() {
+        return 1;
+    }
 }
     
 let first = new Instance(2, 2, new Pair("10", "1"));
