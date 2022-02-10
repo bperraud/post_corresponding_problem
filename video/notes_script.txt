@@ -1,0 +1,43 @@
+PA script:
+
+- L'informatique dans notre quotidien (très court)
+- L'informatiue est très vaste et versatile, on y rencontre/découvre aussi de nombreux problèmes et casses têtes
+- Nous nous penchons sur le problème PCP, blaque par rapport au fait que ça n'a rien à voir avec la Poste, mais avec Emile Post, un scientifique
+- Courte présentation sur Emile Post, son domaine, autres problématiques qu'il a abordé, son magnus opus (?) PCP
+- Avant de plonger dans PCP, une rapide vue sur certains mots-clefs à connaître: alphabet, ...
+- Présentation basique et simple de PCP, sans aborder en profondeur le but du problème, soit l'indécidabilité
+	--> Quelques exemples illustrés, illustrations faites soit avec powerpoint ou un programme de livstreaming, stupidest use of vmix award goes to... me.
+- À quoi ça sert tout ça? À rien.
+	--> En fait c'est une des meilleurs problèmes d'indécidabilité.
+	Explication in/décidabilité
+	Indécidabilité dans PCP, exmples
+- Bien évidament ce genre de problème est difficile à cerner juste en nous écoutant, c'est pourquoi nous avons fait une sorte de jeu afin d'essayer par vous même de résoudre des PCPs. Puis si vous avez bien compris le problème et êtes un maître dans la matière, nous vous invitons à participer à la CPCPC - la "Competitive Post Correspondence Problem Cup", le premier tournois esportifs PCP. Pour cela il suffit de venir nous visiter au printemps des sciences la semaine du X et de jouer à notre jeu sur la borne de jeu installée sur place. Il faudra []. Une seule participation par personne, et à la clef une pizza offerte par le professeur Cardinal (à confirmer)
+
+-----------------------------
+
+CPCPC:
+
+- Coupe, faite à la main avec une inscription "La Poste", rayée avec Emile Poste à la place, un truc bête quoi
+
+-----------------------------
+
+PA poster:
+
+- CPCPC Invitational
+	* À la Avengers avec Emile Post au lieu de Thanos et notre coupe au lieu du gant, on remplace les Avengers par nous ou des photos stock
+	* À droite Emile Post et à gauche nous ou photos stocks, prêts à attaquer
+
+- Titre écrit avec blocs du jeu/ de la vidéo
+
+-----------------------------
+
+Stand:
+
+- Télévision, y afficher le scoreboard en direct de la CPCPC, la base de données  renouvelle le graphique après chaque partie jouée sur la borne
+
+- Commenter la compétition? Livestream???
+
+
+
+
+
