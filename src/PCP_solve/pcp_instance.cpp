@@ -1,6 +1,4 @@
-#include "pcp_solving.h"
-
-
+#include "pcp_instance.h"
 
 using namespace std;
 
@@ -8,6 +6,16 @@ bool Pcp_bloc::has_prefix()
 {
 	return strncmp(_top, _bottom,  ABS( _width - top_less_bottom()));
 }
+
+
+unsigned int Pcp_instance::excess_one()
+{
+
+
+
+}
+
+
 
 Pcp_bloc::Pcp_bloc(const char *top, const char *bottom){
 	_top = top;
