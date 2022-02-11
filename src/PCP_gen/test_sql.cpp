@@ -23,7 +23,7 @@ int main(void)
 
         /* Create a connection */
         driver = get_driver_instance();
-        con = driver->connect("localhost", "admin", "Oelf2MC?");
+        con = driver->connect("localhost", "PCPadmin", "AXaHUKc])n2D%t*\"T6Ve");
         /* Connect to the MySQL test database */
         con->setSchema("PCP");
 
