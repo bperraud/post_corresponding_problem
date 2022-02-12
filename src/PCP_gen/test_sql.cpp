@@ -13,10 +13,33 @@ using namespace std;
 int main(void)
 {
     cout << endl;
-    cout << "Running 'SELECT 'Hello World!' AS _message'..." << endl;
+    cout << "Running 'SELECT * FROM instances'..." << endl;
 
     try {
+        sql::Driver *driver;
+        sql::Connection *con;
+        sql::Statement *stmt;
+        sql::ResultSet *res;
 
+        /* Create a connection */
+        driver = get_driver_instance();
+        con = driver->connect("localhost", "PCPadmin", "AXaHUKc])n2D%t*\"T6Ve");
+        /* Connect to the MySQL test database */
+        con->setSchema("PCP");
+
+        stmt = con->createStatement();
+        res = stmt->executeQuery("SELECT * FROM instances");
+        while (res->next()) {
+            cout << "\t... MySQL replies: ";
+            /* Access column data by alias or column name */
+            cout << res->getString("pairs") << endl;
+            cout << "\t... MySQL says it again: ";
+            /* Access column data by numeric offset, 1 is the first column */
+            cout << res->getString(1) << endl;
+        }
+        delete res;
+        delete stmt;
+        delete con;
     }
     catch (sql::SQLException &e) {
         cout << "# ERR: SQLException in " << __FILE__;
