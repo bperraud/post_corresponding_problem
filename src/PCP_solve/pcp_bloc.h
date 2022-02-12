@@ -2,24 +2,28 @@
 #define PCP_BLOC_H
 
 
+#define ABS(Value) (Value < 0) ? - (Value) : (Value)
+#define MAX(a,b) ((a)>(b)?(a):(b))
+
+#include <string>
+#include <vector>
+
 class Pcp_bloc{
 
-	const char*		_top;				// string du haut
-	const char*		_bottom;			// string du bas
+	std::string		_top;				// string du haut
+	std::string		_bottom;			// string du bas
 	unsigned int	_width;
 
 public:
-	Pcp_bloc (const char* top, const char* bottom);
+	Pcp_bloc (std::string top, std::string bottom);
 	// Getters
-	inline const char* get_top() {return _top;}
-	inline const char* get_bottom() {return _bottom;}
+	std::string get_top() {return _top;}
+	std::string get_bottom() {return _bottom;}
 	// Utils
 	bool has_prefix();
-	inline int top_less_bottom() {return (strlen(_top) - strlen(_bottom));}
-
+	inline int top_less_bottom() {return (_top.length() - _bottom.length());}
 
 };
-
 
 
 #endif

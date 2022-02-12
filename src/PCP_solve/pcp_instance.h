@@ -1,25 +1,21 @@
 #ifndef PCP_SOLVING_H
 #define PCP_SOLVING_H
 
-#define ABS(Value) (Value < 0) ? - (Value) : (Value)
-#define MAX(a,b) ((a)>(b)?(a):(b))
 
-#include <cstring>
-#include <iostream>
-
-
-
+#include "pcp_bloc.h"
 
 class Pcp_instance{
-	Pcp_instance(unsigned int p_lenght, unsigned int p_width)	: _lenght(p_lenght), _width(p_width) {}
-
-	unsigned int _lenght;			// nombre de bloc
-	unsigned int _width; 			// longueur de la plus grande string
-	Pcp_bloc _instance[];			// liste des blocs
+	Pcp_instance(unsigned int lenght, unsigned int width) : _lenght(lenght), _width(width) {}
+	//Pcp_instance(const std::initializer_list<Pcp_bloc> &blocs) ;
+	unsigned int _lenght;				// nombre de bloc
+	unsigned int _width; 				// longueur de la plus grande string
+	std::vector<Pcp_bloc> _instance;	// liste des blocs
 
 public:
-	//
-	unsigned int excess_one();
+	bool prefix_filter();
+	bool length_balance_filter();
+	bool element_balance_filter();
+
 };
 
 #endif

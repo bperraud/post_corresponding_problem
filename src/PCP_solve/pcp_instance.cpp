@@ -1,34 +1,63 @@
 #include "pcp_instance.h"
 
-using namespace std;
-
-bool Pcp_bloc::has_prefix()
+/*
+Pcp_instance::Pcp_instance(const char** p)
 {
-	return strncmp(_top, _bottom,  ABS( _width - top_less_bottom()));
+	const char* bloc = **p;
+	std::ptrdiff_t idx;
+	// idx pair
+	while (*p)
+	{
+		_instance.insert(Pcp_bloc(*p++), idx);
+		_instance.insert(Pcp_bloc(*p++), idx+1);
+		p++;
+	}
 }
+*/
 
-
-unsigned int Pcp_instance::excess_one()
+bool Pcp_instance::prefix_filter()
 {
-
-
-
+	for (int i = 0; i < _lenght ; i++)
+	{
+		if (_instance[i].has_prefix())
+			return (false);
+	}
+	return (true);
 }
 
 
-
-Pcp_bloc::Pcp_bloc(const char *top, const char *bottom){
-	_top = top;
-	_bottom = bottom;
-	_width = MAX(strlen(top), strlen(bottom));
-}
-
-int main(void)
+bool Pcp_instance::length_balance_filter()
 {
-	Pcp_bloc* bloc = new Pcp_bloc((char*)"100", (char*)"101");
-
-	cout << bloc->has_prefix() << endl;
+	int good_balance = 0;
+	for (int i = 0; i < _lenght ; i++)
+	{
+		if (_instance[i].has_prefix())
+		{
+			for (int j = 0; j < _lenght; j++)
+			{
+				if (j != i)
+				{
+					if (_instance[i].top_less_bottom() - _instance[j].top_less_bottom() == 0)
+						good_balance += 1;
+				}
+			}
+		}
+	}
+	return (good_balance > 0);
 }
+
+
+bool Pcp_instance:: element_balance_filter()
+{
+	return (true);
+}
+
+
+
+
+
+
+
 
 
 
