@@ -1,19 +1,13 @@
 #include "pcp_instance.h"
 
-/*
-Pcp_instance::Pcp_instance(const char** p)
+
+Pcp_instance::Pcp_instance(std::initializer_list<std::string> blocs) : _width(blocs.size()/2), _instance(blocs.size()/2, Pcp_bloc())
 {
-	const char* bloc = **p;
-	std::ptrdiff_t idx;
-	// idx pair
-	while (*p)
-	{
-		_instance.insert(Pcp_bloc(*p++), idx);
-		_instance.insert(Pcp_bloc(*p++), idx+1);
-		p++;
-	}
+	auto bloc = blocs.begin();
+	for (std::size_t i = 0; i < _width; ++i)
+		_instance[i] = Pcp_bloc(*bloc++, *bloc++);
 }
-*/
+
 
 bool Pcp_instance::prefix_filter()
 {

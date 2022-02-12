@@ -7,6 +7,7 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
 
 class Pcp_bloc{
 
@@ -15,7 +16,8 @@ class Pcp_bloc{
 	unsigned int	_width;
 
 public:
-	Pcp_bloc (std::string top, std::string bottom);
+	Pcp_bloc() noexcept = default;
+	Pcp_bloc (std::string, std::string);
 	// Getters
 	std::string get_top() {return _top;}
 	std::string get_bottom() {return _bottom;}
