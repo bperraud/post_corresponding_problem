@@ -6,9 +6,11 @@ Pcp_instance::Pcp_instance(std::initializer_list<std::string> blocs) : _lenght(b
 	auto bloc = blocs.begin();
 	for (std::size_t i = 0; i < _lenght; ++i)
 	{
-		_instance[i] = Pcp_bloc(*bloc++, *bloc++);
-		std::cout << "top : " << (_instance[i].get_top()) << std::endl;
+		_instance[i] = Pcp_bloc(*bloc, *(bloc+1));
+		bloc += 2;
+		std::cout << "top : " << (_instance[i].get_top()) << " " ;
 		std::cout << "bottom : " << (_instance[i].get_bottom()) << std::endl;
+		std::cout << "hasprefix : " << _instance[i].has_prefix()  << std::endl;
 	}
 }
 
@@ -28,8 +30,7 @@ bool Pcp_instance::length_balance_filter()
 {
 	for (int i = 0; i < _lenght ; i++)
 	{
-		std::cout << "hasprefix" << _instance[i].has_prefix()  << std::endl;
-
+		//std::cout << "hasprefix" << _instance[i].has_prefix()  << std::endl;
 		if (_instance[i].has_prefix())		// si le bloc i peut être placé en premier
 		{
 			for (int j = 0; j < _lenght; j++)
