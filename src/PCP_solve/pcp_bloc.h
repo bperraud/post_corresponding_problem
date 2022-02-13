@@ -1,13 +1,13 @@
 #ifndef PCP_BLOC_H
 #define PCP_BLOC_H
 
-
 #define ABS(Value) (Value < 0) ? - (Value) : (Value)
 #define MAX(a,b) ((a)>(b)?(a):(b))
 
 #include <string>
 #include <vector>
 #include <iostream>
+#include <algorithm>
 
 class Pcp_bloc{
 
@@ -23,8 +23,8 @@ public:
 	std::string get_bottom() {return _bottom;}
 	// Utils
 	bool has_prefix();
-	inline int top_less_bottom() {return (_top.length() - _bottom.length());}
-
+	inline int top_less_bottom_len() {return _top.length() - _bottom.length();}
+	inline int top_less_bottom_ones() {return std::count(_top.begin(), _top.end(), '1') - std::count(_bottom.begin(), _bottom.end(), '1');}
 };
 
 
