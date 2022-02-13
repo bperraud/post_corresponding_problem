@@ -27,11 +27,11 @@ bool Pcp_instance::length_balance_filter()
 {
 	for (int i = 0; i < _lenght ; i++)
 	{
-		if (_instance[i].has_prefix())		// si le bloc i peut être placé en premier
+		if (_instance[i].has_prefix())																	// le bloc i peut être placé en premier
 		{
 			for (int j = 0; j < _lenght; j++)
 			{
-				if ( j != i && _instance[j].top_less_bottom() + _instance[i].top_less_bottom(); < 0)
+				if ( j != i && _instance[j].top_less_bottom() + _instance[i].top_less_bottom() <= 0)   // il existe une autre pair qui contrebalance la longueur de la plus grande string
 					return (false);
 			}
 		}
