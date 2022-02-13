@@ -9,7 +9,7 @@ Pcp_bloc::Pcp_bloc(std::string top, std::string bottom)
 
 bool Pcp_bloc::has_prefix()
 {
-	return !_top.compare(0, ABS( _width - top_less_bottom()), _bottom);
+	return !_top.compare(0, _top.length(), _bottom, 0, _width - (ABS(top_less_bottom())));
 }
 
 

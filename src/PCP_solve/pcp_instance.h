@@ -12,7 +12,6 @@ class Pcp_instance{
 
 public:
 	Pcp_instance(unsigned int lenght, unsigned int width) : _lenght(lenght), _width(width) {}
-	//Pcp_instance(std::string list[], unsigned int width) ;
 	Pcp_instance(std::initializer_list<std::string>);
 	bool prefix_filter();
 	bool length_balance_filter();
