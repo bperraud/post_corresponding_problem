@@ -8,7 +8,7 @@ use PCP;
 
 create table if not exists instances(
     id mediumint not null auto_increment,
-    pairs varchar(84) not null,
+    pairs varchar(84) not null unique,
     sol_len smallint,
     primary key (id)
     );
