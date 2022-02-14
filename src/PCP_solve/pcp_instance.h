@@ -19,6 +19,7 @@ public:
 	bool element_balance_filter();
     std::string stringify();
     void write_instance();
+    bool is_in_db();
 
 };
 

@@ -21,7 +21,10 @@ int main(void)
 
 	Pcp_instance instance2 = {"001", "00", "11", "011", "01", "000", "010", "10"};
 
-    instance.write_instance();
+    if (!instance.is_in_db()){
+        instance.write_instance();
+    }
+
 
 	cout << instance.length_balance_filter() << endl;
 	cout << instance2.length_balance_filter() << endl;
