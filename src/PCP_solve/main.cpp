@@ -25,6 +25,10 @@ int main(void)
         instance.write_instance();
     }
 
+    if (!instance2.is_in_db()){
+        instance2.write_instance();
+    }
+
 
 	cout << instance.length_balance_filter() << endl;
 	cout << instance2.length_balance_filter() << endl;
