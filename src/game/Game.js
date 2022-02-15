@@ -1,13 +1,16 @@
+"use strict";
 import Pair from './Pair.js';
 import Instance from './Instance.js';
-import Solution from './Solution.js'
+import Solution from './Solution.js';
+import promptSync from 'prompt-sync';
+const prompt = promptSync();
+
 
 
 class Game{
     constructor(_instance){
         this.instance = _instance;
         this.solution = new Solution(this.instance.getPairs())
-
     }
 
     isInputValid(input){
@@ -21,10 +24,10 @@ class Game{
 
     getUserInput(){
         console.log("Please type a command to construct a solution :")
-        const input = prompt()
+        let input = prompt();
         while (!this.isInputValid(input)){
             console.log("Invalid syntax, please try again :")
-            input = prompt()
+            input = prompt();
         }
         this.play(input);
 
@@ -34,6 +37,7 @@ class Game{
         if (input[0]=='+'){
             let index = parseInt(input.slice(1));
             this.solution.push(index);
+            console.log("++");
         }
         else if (input[0]=='-'){
             let index = parseInt(input.slice(1));
@@ -45,13 +49,13 @@ class Game{
 
     gameLoop(){
         while (!this.solution.isWon()){
-            console.clear();
             this.instance.displayPairs();
             this.getUserInput();
             this.solution.displaySolution();
             this.solution.displayResult();
+            console.log('\n \n \n')
 
-        }
+        }   
     }
 }
 
