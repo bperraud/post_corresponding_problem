@@ -43,10 +43,12 @@ export default class Solution {
     }
 
     displaySolution(){
+        console.log("The current solution is : ")
         for(let i=0; i<this.solution.length;i++){
             process.stdout.write(`| ${this.pairs[this.solution[i]].getTop() + this.pairs[this.solution[i]].getTopPad()} |`)
         }
         console.log()
+        console.log("The current result is : ")
         for(let i=0; i<this.solution.length; i++){
             process.stdout.write(`| ${this.pairs[this.solution[i]].getBottom() + this.pairs[this.solution[i]].getBottomPad()} |`)
         }
