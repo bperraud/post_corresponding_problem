@@ -1,5 +1,6 @@
-import {Instance, Pair} from 'post';
-//import Pair from 'post';
+import Pair from './Pair.js';
+import Instance from './Instance.js';
+import Solution from './Solution.js'
 
 
 class Game{
@@ -44,6 +45,7 @@ class Game{
 
     gameLoop(){
         while (!this.solution.isWon()){
+            console.clear();
             this.instance.displayPairs();
             this.getUserInput();
             this.solution.displaySolution();
@@ -53,9 +55,9 @@ class Game{
     }
 }
 
-let pair1 = Pair('aa','bb')
-let pair2 = Pair('bb','cc')
-let pair3 = Pair('aa','kk')
+let pair1 = new Pair('aa','bb')
+let pair2 = new Pair('bb','cc')
+let pair3 = new Pair('aa','kk')
 
 let inst = new Instance(3,3, [pair1, pair2, pair3]);
 let game = new Game(inst);
