@@ -1,9 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
+import Domino from './components/Domino';
 
 function App() {
   return (
     <div className="App">
+      <Domino/>
     </div>
   );
 }
