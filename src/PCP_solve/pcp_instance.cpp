@@ -35,7 +35,7 @@ bool Pcp_instance::length_balance_filter()
 		{
 			for (int j = 0; j < _length; j++)
 			{
-				if ( j != i && _instance[j].top_less_bottom_len() + _instance[i].top_less_bottom_len() <= 0) // il existe une autre pair qui contrebalance la longueur de la plus grande string
+				if ( j != i && _instance[j].top_less_bottom_len() + _instance[i].top_less_bottom_len() <= 0) // il existe un autre bloc qui contrebalance la longueur de la plus grande string
 					return (false);
 			}
 		}
@@ -52,7 +52,7 @@ bool Pcp_instance::element_balance_filter()
 		{
 			for (int j = 0; j < _length; j++)
 			{
-				if ( j != i && _instance[j].top_less_bottom_ones() + _instance[i].top_less_bottom_ones() <= 0) // il existe une autre pair qui contrebalance le nombre de 1
+				if ( j != i && _instance[j].top_less_bottom_ones() + _instance[i].top_less_bottom_ones() <= 0) // il existe un autre bloc qui contrebalance le nombre de 1
 					return (false);
 			}
 		}
@@ -61,7 +61,8 @@ bool Pcp_instance::element_balance_filter()
 }
 
 
-std::string Pcp_instance::stringify() {
+std::string Pcp_instance::stringify()
+{
     std::string res;
     for (int i = 0; i < _length; i++){
         Pcp_bloc bloc = _instance[i];
@@ -72,8 +73,10 @@ std::string Pcp_instance::stringify() {
 }
 
 
-void Pcp_instance::write_instance() {
-    try {
+void Pcp_instance::write_instance()
+{
+    try
+	{
         sql::Driver *driver;
         sql::Connection *con;
         sql::Statement *stmt;
@@ -89,7 +92,8 @@ void Pcp_instance::write_instance() {
         delete stmt;
         delete con;
     }
-    catch (sql::SQLException &e) {
+    catch (sql::SQLException &e)
+	{
         std::cout << "# ERR: SQLException in " << __FILE__;
         std::cout << "(" << __FUNCTION__ << ") on line "
              << __LINE__ << std::endl;
@@ -100,8 +104,10 @@ void Pcp_instance::write_instance() {
 }
 
 
-bool Pcp_instance::is_in_db() {
-    try {
+bool Pcp_instance::is_in_db()
+{
+    try
+	{
         sql::Driver *driver;
         sql::Connection *con;
         sql::Statement *stmt;
@@ -124,7 +130,8 @@ bool Pcp_instance::is_in_db() {
         delete con;
         return is_in_db;
     }
-    catch (sql::SQLException &e) {
+    catch (sql::SQLException &e)
+	{
         std::cout << "# ERR: SQLException in " << __FILE__;
         std::cout << "(" << __FUNCTION__ << ") on line "
                   << __LINE__ << std::endl;
