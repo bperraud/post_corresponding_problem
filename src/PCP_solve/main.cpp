@@ -21,13 +21,11 @@ int main(void)
 
 	Pcp_instance instance2 = {"001", "00", "11", "011", "01", "000", "010", "10"};
 
-    if (!instance.is_in_db())
-	{
+    if (!instance.is_in_db()){
         instance.write_instance();
     }
 
-    if (!instance2.is_in_db())
-	{
+    if (!instance2.is_in_db()){
         instance2.write_instance();
     }
 
