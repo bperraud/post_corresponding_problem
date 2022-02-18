@@ -1,5 +1,7 @@
 body {
   background-color: #333;
+  margin: 0%;
+  padding: 0%;
 }
 
 .App {
@@ -7,22 +9,17 @@ body {
   align-items: center;
   height: 100vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-.dot {
-  width: 23px;
-  height: 23px;
-  background: #111;
-  border-radius: 50%;
-  box-shadow: 2px 2px 10px #999 inset;
+button {
+  background-color: transparent;
+  border: transparent;
+  cursor: pointer;
 }
 
 .dominoes-tile {
   display: flex;
   flex-direction: column;
-  margin-right: 1em;
 }
 
 .dominoes-tile__top, .dominoes-tile__bottom {
@@ -31,7 +28,9 @@ body {
   background: #eae3d3;
   position: relative;
   box-sizing: border-box;
-  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .dominoes-tile__top:before, .dominoes-tile__bottom:before {
@@ -60,4 +59,8 @@ body {
 
 .dominoes-tile__bottom:before {
   top: 0px;
+}
+
+p {
+  font-size: x-large;
 }
