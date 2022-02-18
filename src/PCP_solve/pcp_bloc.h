@@ -9,8 +9,7 @@
 #include <iostream>
 #include <algorithm>
 
-class Pcp_bloc{
-
+class Pcp_bloc {
 	std::string		_top;				// string du haut
 	std::string		_bottom;			// string du bas
 	unsigned int	_width;

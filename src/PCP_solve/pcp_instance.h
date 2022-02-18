@@ -4,8 +4,7 @@
 
 #include "pcp_bloc.h"
 
-class Pcp_instance{
-
+class Pcp_instance {
 	unsigned int _length;				// nombre de bloc
 	unsigned int _width; 				// longueur de la plus grande string
 	std::vector<Pcp_bloc> _instance;	// liste des blocs
