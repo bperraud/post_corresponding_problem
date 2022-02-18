@@ -1,9 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+
 const Domino = ({topText, bottomText}) => {
+  const onClick = (e) => {
+    console.log('click')
+  }
   return (
-    <button>
+    <button onClick={onClick}>
       <div class="dominoes-tile">
         <div class="dominoes-tile__top">
           <p>{topText}</p>
