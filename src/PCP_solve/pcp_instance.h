@@ -5,9 +5,9 @@
 #include "pcp_bloc.h"
 
 class Pcp_instance {
-	const unsigned int _size;					// nombre de bloc
-	const unsigned int _width; 					// longueur de la plus grande string
-	const std::vector<Pcp_bloc> _instance;		// liste des blocs
+	unsigned int _size;					// nombre de bloc
+	unsigned int _width; 					// longueur de la plus grande string
+	std::vector<Pcp_bloc> _instance;		// liste des blocs
 
 public:
 	Pcp_instance(unsigned int size, unsigned int width) : _size(size), _width(width) {}
@@ -19,6 +19,7 @@ public:
     void write_instance();
     bool is_in_db();
 
+	friend std::ostream& operator<< (std::ostream&, Pcp_instance&);
 };
 
 #endif
