@@ -15,8 +15,7 @@ int main(void)
     cout << endl;
     cout << "Running 'SELECT * FROM instances'..." << endl;
 
-    try
-	{
+    try {
         sql::Driver *driver;
         sql::Connection *con;
         sql::Statement *stmt;
@@ -42,8 +41,7 @@ int main(void)
         delete stmt;
         delete con;
     }
-    catch (sql::SQLException &e)
-	{
+    catch (sql::SQLException &e) {
         cout << "# ERR: SQLException in " << __FILE__;
         cout << "(" << __FUNCTION__ << ") on line "
         << __LINE__ << endl;
