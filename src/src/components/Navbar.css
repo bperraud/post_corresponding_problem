@@ -1,0 +1,42 @@
+nav {
+  height: 90px;
+  background: linear-gradient(45deg, rgb(176, 176, 180), rgb(166, 224, 231));
+  margin-top: -20px;
+  position: relative;
+}
+.title {
+  color: #2b2a64;
+}
+
+.title:hover {
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+}
+.list {
+  list-style-type: none;
+  height: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-center;
+}
+
+.items {
+  margin-right: 30px;
+  color: #5c5959;
+  font-size: large;
+}
+
+.items:hover {
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 120%;
+}
+
+img {
+  top: -220px;
+  left: -200px;
+  scale: 15%;
+  position: absolute;
+}
