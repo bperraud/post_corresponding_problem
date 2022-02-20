@@ -1,6 +1,9 @@
 import './App.css';
 import Domino from './components/Domino';
 import Navbar from './components/Navbar'
+import ContactForm from './components/ContactForm'
+import GameBoard from './components/GameBoard';
+
 
 function App() {
   const elements = [["AB", "CD"], ["EF", "GH"], ["IJ", "KL"]];
@@ -11,6 +14,8 @@ function App() {
     <div className="App">
       <div className='Header'>
       <Navbar/>
+      <GameBoard/>
+      <ContactForm/>
       </div>
       <ul>
         {elements.map((item, index) => <Domino topText={item[0]} bottomText={item[1]}/>)}
