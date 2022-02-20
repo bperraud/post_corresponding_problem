@@ -1,0 +1,24 @@
+.rectangle {
+  width: 900px;
+  height: 550px;
+  background: white;
+  border: 2px solid #b4e0eb;
+  display: inline-block;
+  border-radius: 20px;
+}
+
+.gameButtons {
+  margin-top: 30px;
+  margin: 20px;
+  background-color: white;
+  color: rgb(90, 90, 90);
+  border: 2px solid #b4e0eb;
+  transition-duration: 0.4s;
+  border-radius: 20px;
+  padding: 10px 24px;
+}
+.gameButtons:hover {
+  background-color: #b4e0eb;
+  color: black;
+  cursor: pointer;
+}

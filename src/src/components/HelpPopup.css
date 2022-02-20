@@ -1,0 +1,29 @@
+.textinput {
+  background: white;
+  border: 1.5px solid #a5ced8;
+  display: inline-block;
+  border-radius: 5px;
+  height: 20px;
+  margin: 15px;
+}
+
+.textinput :hover {
+  background-color: #b4b4b4;
+  color: black;
+  cursor: text;
+}
+
+.textbox {
+  margin: 15px;
+  height: 150px;
+  width: 450px;
+  max-width: 450px;
+  min-width: 450px;
+  min-height: 150px;
+  max-height: 450px;
+  align-items: center;
+  align-content: center;
+  display: inline-block;
+  border-radius: 5px;
+  border: 1.5px solid #a5ced8;
+}
