@@ -54,6 +54,5 @@ bool Pcp_instance::element_balance_filter()
 
 std::ostream& operator<< (std::ostream& out,  Pcp_instance& v){
 	out << "[ "; for (auto x: v._instance) out << x << ' '; out << ']';
-	//out <<  v._size  << ']';
 	return out;
 }

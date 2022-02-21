@@ -3,6 +3,8 @@
 
 #define ABS(Value) (Value < 0) ? - (Value) : (Value)
 #define MAX(a,b) ((a)>(b)?(a):(b))
+#define MIN(a,b) ((a)<(b)?(a):(b))
+
 
 #include <string>
 #include <vector>
