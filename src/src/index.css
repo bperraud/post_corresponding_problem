@@ -70,3 +70,9 @@ ul {
 p {
   font-size: x-large;
 }
+
+#game {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

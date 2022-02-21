@@ -41,28 +41,30 @@ function App() {
       <div className='Header'>
         <Navbar/>
         <GameBoard/>
-        <ContactForm/>
       </div>
-      <DragDropContext onDragEnd={handleOnDragEnd}>
-          <Droppable droppableId="elements" direction='horizontal'>
-            {(provided) => (
-              <ul className="elements" {...provided.droppableProps} ref={provided.innerRef}>
-                {elements.map(({id, topText, bottomText}, index) => {
-                  return (
-                    <Draggable key={id} draggableId={id} index={index}>
-                      {(provided) => (
-                        <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                          <Domino topText={topText} bottomText={bottomText}></Domino>
-                        </li>
-                      )}
-                    </Draggable>
-                  );
-                })}
-                {provided.placeholder}
-              </ul>
-            )}
-          </Droppable>
-        </DragDropContext>
+      <div id='game'>
+        <DragDropContext onDragEnd={handleOnDragEnd}>
+            <Droppable droppableId="elements" direction='horizontal'>
+              {(provided) => (
+                <ul className="elements" {...provided.droppableProps} ref={provided.innerRef}>
+                  {elements.map(({id, topText, bottomText}, index) => {
+                    return (
+                      <Draggable key={id} draggableId={id} index={index}>
+                        {(provided) => (
+                          <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+                            <Domino topText={topText} bottomText={bottomText}></Domino>
+                          </li>
+                        )}
+                      </Draggable>
+                    );
+                  })}
+                  {provided.placeholder}
+                </ul>
+              )}
+            </Droppable>
+          </DragDropContext>
+        </div>
+        <ContactForm/>
     </div>
   );
 }
