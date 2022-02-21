@@ -1,5 +1,5 @@
 .rectangle {
-  width: 900px;
+  width: 100%;
   height: 550px;
   background: white;
   border: 2px solid #b4e0eb;
@@ -17,6 +17,7 @@
   border-radius: 20px;
   padding: 10px 24px;
 }
+
 .gameButtons:hover {
   background-color: #b4e0eb;
   color: black;

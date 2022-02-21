@@ -9,18 +9,23 @@ import GameBoard from './components/GameBoard';
 const finalElements = [
   {
     id: '0',
-    topText: 'A',
-    bottomText: 'B'
+    topText: 'B',
+    bottomText: 'CA'
   },
   {
     id: '1',
-    topText: 'C',
-    bottomText: 'D'
+    topText: 'A',
+    bottomText: 'AB'
   },
   {
     id: '2',
-    topText: 'E',
-    bottomText: 'F'
+    topText: 'CA',
+    bottomText: 'A'
+  },
+  {
+    id: '3',
+    topText: 'ABC',
+    bottomText: 'C'
   }
 ]
 
