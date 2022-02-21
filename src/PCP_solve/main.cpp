@@ -3,8 +3,7 @@
 #include "pcp_instance.h"
 #include "pcp_solution.h"
 
-
-# define LENGTH 5
+# define LENGTH 10
 
 using namespace std;
 
@@ -12,13 +11,15 @@ void solve(int i, Pcp_instance instance, Pcp_solution pcp)
 {
 	if (pcp.is_solution())
 	{
-		cout << "solution" << pcp << endl;
+		cout << "SOLUTION" << pcp << endl;
 		// write in db
 		return ;
 	}
-	else if (pcp.get_length() == LENGTH)
+	//else if (pcp.get_length() == LENGTH)
+	else if (i == LENGTH)
 	{
 		// pas de solution trouvé
+		//cout << "pas de solution taille length" << pcp << endl;
 		return ;
 	}
 	for (Pcp_bloc bloc : instance.getInstance())
@@ -28,7 +29,7 @@ void solve(int i, Pcp_instance instance, Pcp_solution pcp)
 			pcp.push(bloc);
 			solve(i + 1, instance, pcp);
 			pcp.pop();
-			solve(i+1, instance, pcp);
+			solve(i + 1, instance, pcp);
 		}
 	}
 }
