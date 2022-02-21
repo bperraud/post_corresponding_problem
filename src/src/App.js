@@ -1,3 +1,4 @@
+import './App.css';
 import {DragDropContext, Droppable, Draggable} from 'react-beautiful-dnd'
 import React, { useState } from 'react';
 import Domino from './components/Domino';
