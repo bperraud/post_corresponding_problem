@@ -10,10 +10,17 @@ body {
   background-color: white;
 }
 
-button {
+ul {
+  list-style-type: none;
+  display: flex;
+}
+
+.domino {
   background-color: transparent;
   border: transparent;
-  cursor: pointer;
+  cursor: grabbing;
+  margin: 10px;
+  color: black;
 }
 
 .dominoes-tile {
@@ -21,8 +28,7 @@ button {
   flex-direction: column;
 }
 
-.dominoes-tile__top,
-.dominoes-tile__bottom {
+.dominoes-tile__top, .dominoes-tile__bottom {
   width: 100px;
   height: 100px;
   background: #eae3d3;
@@ -33,8 +39,7 @@ button {
   align-items: center;
 }
 
-.dominoes-tile__top:before,
-.dominoes-tile__bottom:before {
+.dominoes-tile__top:before, .dominoes-tile__bottom:before {
   content: "";
   display: block;
   width: 80%;

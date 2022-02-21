@@ -1,13 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-
 const Domino = ({topText, bottomText}) => {
-  const onClick = (e) => {
-    console.log('click')
-  }
   return (
-    <button onClick={onClick}>
+    <div class="domino">
       <div class="dominoes-tile">
         <div class="dominoes-tile__top">
           <p>{topText}</p>
@@ -16,7 +12,7 @@ const Domino = ({topText, bottomText}) => {
           <p>{bottomText}</p>
         </div>
       </div>
-    </button>
+    </div>
   )
 }
 
