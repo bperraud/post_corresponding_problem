@@ -2,7 +2,8 @@
 import Pair from './Pair.js';
 import Instance from './Instance.js';
 import Solution from './Solution.js';
-import promptSync from 'prompt-sync';
+import PromptSync from 'prompt-sync';
+
 const prompt = promptSync();
 
 
