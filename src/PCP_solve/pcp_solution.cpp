@@ -60,7 +60,8 @@ void Pcp_solution::pop()
 }
 
 
-bool Pcp_solution::solve(int depth, Pcp_instance instance = Pcp_instance(6, 6)){
+bool Pcp_solution::solve(int depth, Pcp_instance instance){
+    std::cout << depth << std::endl;
     if (is_solution())
     {
         std::cout << "SOLUTION SIZE = " << _pcp.size() << std::endl;
@@ -76,14 +77,19 @@ bool Pcp_solution::solve(int depth, Pcp_instance instance = Pcp_instance(6, 6)){
     }
     for (Pcp_bloc bloc : instance.getInstance())
     {
-        if (is_bloc_possible(bloc))
-        {
-            push(bloc);
-            solve(depth -1, instance);
-            pop();
-            //solve(depth -1, instance);
+        //std::cout << bloc << std::endl;
+
+        push(bloc);
+        bool res = solve(depth -1, instance);
+        if (res){
+            return true;
         }
+        pop();
+        //solve(depth -1, instance);
+
     }
+    //std::cout << "what am I doing here?" << std::endl;
+    return false;
 }
 
 

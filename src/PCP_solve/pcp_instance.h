@@ -17,7 +17,6 @@ public:
             Pcp_bloc bloc = Pcp_bloc();
             bloc.generate_blocs(width);
             _instance.push_back(bloc);
-            std::cout << bloc << std::endl;
         }
     };
 	Pcp_instance(std::initializer_list<std::string>);
