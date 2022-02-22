@@ -6,7 +6,8 @@
 int main(void)
 {
 	Pcp_solution pcp = Pcp_solution();
-    Pcp_instance instance = Pcp_instance(2, 6);
+    //Pcp_instance instance = Pcp_instance(2, 6);
+    Pcp_instance instance = {"1", "111", "10111", "10", "10", "0"};
     std::cout << instance << std::endl;
 	std::cout << pcp.solve(5, instance) << std::endl;
 }
