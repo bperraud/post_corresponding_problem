@@ -16,6 +16,10 @@ public:
 	void push(Pcp_bloc bloc);
 	void pop();
 
+    std::string stringify();
+    void write_instance();
+    bool is_in_db();
+
 	friend std::ostream& operator<< (std::ostream&, Pcp_solution&);
 };
 

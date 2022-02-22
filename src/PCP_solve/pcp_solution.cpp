@@ -1,5 +1,9 @@
 #include "pcp_solution.h"
 
+#include <cppconn/driver.h>
+#include <cppconn/exception.h>
+#include <cppconn/statement.h>
+
 
 bool Pcp_solution::is_solution()
 {
@@ -54,6 +58,82 @@ void Pcp_solution::pop()
 		_length -= 1;
 	}
 }
+
+
+std::string Pcp_solution::stringify() {
+    std::string res;
+    Pcp_bloc bloc;
+    for (int i = 0; i < _length; i++){
+        Pcp_bloc bloc = _pcp[i];
+        res += bloc.get_top() + "," + bloc.get_bottom() + ",";
+    }
+    res.pop_back(); //removes last ','
+    return res;
+}
+
+
+void Pcp_solution::write_instance() {
+    try {
+        sql::Driver *driver;
+        sql::Connection *con;
+        sql::Statement *stmt;
+
+        /* Create a connection */
+        driver = get_driver_instance();
+        con = driver->connect("localhost", "PCPadmin", "AXaHUKc])n2D%t*\"T6Ve");
+        con->setSchema("PCP");
+
+        stmt = con->createStatement();
+        stmt->execute("INSERT INTO instances(pairs, sol_len) VALUES ('" + stringify() + "', '" + std::to_string(sol_len)+ "')");
+
+        delete stmt;
+        delete con;
+    }
+    catch (sql::SQLException &e) {
+        std::cout << "# ERR: SQLException in " << __FILE__;
+        std::cout << "(" << __FUNCTION__ << ") on line "
+                  << __LINE__ << std::endl;
+        std::cout << "# ERR: " << e.what();
+        std::cout << " (MySQL error code: " << e.getErrorCode();
+        std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
+    }
+}
+
+
+bool Pcp_solution::is_in_db() {
+    try {
+        sql::Driver *driver;
+        sql::Connection *con;
+        sql::Statement *stmt;
+        sql::ResultSet *res;
+
+        bool is_in_db;
+
+        /* Create a connection */
+        driver = get_driver_instance();
+        con = driver->connect("localhost", "PCPadmin", "AXaHUKc])n2D%t*\"T6Ve");
+        con->setSchema("PCP");
+
+        stmt = con->createStatement();
+        res = stmt->executeQuery("Select * from instances where pairs='" + stringify() + "'");
+
+        is_in_db = res->rowsCount() == 1;
+
+        delete res;
+        delete stmt;
+        delete con;
+        return is_in_db;
+    }
+    catch (sql::SQLException &e) {
+        std::cout << "# ERR: SQLException in " << __FILE__;
+        std::cout << "(" << __FUNCTION__ << ") on line "
+                  << __LINE__ << std::endl;
+        std::cout << "# ERR: " << e.what();
+        std::cout << " (MySQL error code: " << e.getErrorCode();
+        std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
+    }
+}
+
 
 std::ostream& operator<< (std::ostream& out,  Pcp_solution& v){
 	out << "[ "; for (auto x: v._pcp) out << x << ' '; out << ']';
