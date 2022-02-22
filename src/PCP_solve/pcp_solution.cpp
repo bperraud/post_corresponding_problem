@@ -63,25 +63,25 @@ void Pcp_solution::pop()
 bool Pcp_solution::solve(int depth, Pcp_instance instance = Pcp_instance(6, 6)){
     if (is_solution())
     {
-        cout << "SOLUTION" << pcp << endl;
+        std::cout << "SOLUTION SIZE = " << _pcp.size() << std::endl;
         // write in db
-        return ;
+        return true;
     }
         //else if (pcp.get_length() == LENGTH)
-    else if (i == 0)
+    else if (depth == 0)
     {
         // pas de solution trouvé
-        //cout << "pas de solution taille length" << pcp << endl;
-        return ;
+        std::cout << "pas de solution taille length" << std::endl;
+        return false;
     }
     for (Pcp_bloc bloc : instance.getInstance())
     {
-        if (pcp.is_bloc_possible(bloc))
+        if (is_bloc_possible(bloc))
         {
-            pcp.push(bloc);
-            solve(i + 1, instance);
-            pcp.pop();
-            solve(i + 1, instance);
+            push(bloc);
+            solve(depth -1, instance);
+            pop();
+            //solve(depth -1, instance);
         }
     }
 }
@@ -112,7 +112,7 @@ void Pcp_solution::write_instance() {
         con->setSchema("PCP");
 
         stmt = con->createStatement();
-        stmt->execute("INSERT INTO instances(pairs, sol_len) VALUES ('" + stringify() + "', '" + std::to_string(sol_len)+ "')");
+        stmt->execute("INSERT INTO instances(pairs, sol_len) VALUES ('" + stringify() + "', '" + std::to_string(_pcp.size())+ "')");
 
         delete stmt;
         delete con;

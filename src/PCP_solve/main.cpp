@@ -6,18 +6,17 @@
 int main(void)
 {
 	Pcp_bloc* bloc = new Pcp_bloc("11", "10");
-	cout << *bloc << endl;
-	string top = "001";
-	string bot = "00" ;
+    std::cout << *bloc << std::endl;
+    std::string top = "001";
+    std::string bot = "00" ;
 
 	//Pcp_instance *instance = new Pcp_instance{"001", "00", "00", "01", "1", "0", "101", "10"};
 	//Pcp_instance instance = {"001", "00", "00", "01", "1", "0", "101", "10"};
-	Pcp_instance*  instance = new Pcp_instance{"001", "00", "00", "01", "1", "0", "101", "10"};
+	//Pcp_instance*  instance = new Pcp_instance{"001", "00", "00", "01", "1", "0", "101", "10"};
 
-	Pcp_instance instance2 = {"10", "0", "0", "000", "00", "01"};
-
-	Pcp_solution pcp;
-	solve(0, instance2, pcp);
+	//Pcp_instance instance2 = {"10", "0", "0", "000", "00", "01"};
+	Pcp_solution pcp = Pcp_solution();
+	std::cout << pcp.solve(10, Pcp_instance(6, 6)) << std::endl;
 
 	/*
     if (!instance.is_in_db()){

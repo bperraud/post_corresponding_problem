@@ -2,7 +2,7 @@
 #define PCP_SOLVING_H
 
 #include "pcp_bloc.h"
-#include <random>
+
 
 class Pcp_instance {
 	unsigned int _size;						// nombre de bloc
@@ -16,7 +16,8 @@ public:
         for (int i = 0; i < _size; i++){
             Pcp_bloc bloc = Pcp_bloc();
             bloc.generate_blocs(width);
-            _instance.push_back(bloc)
+            _instance.push_back(bloc);
+            std::cout << bloc << std::endl;
         }
     };
 	Pcp_instance(std::initializer_list<std::string>);

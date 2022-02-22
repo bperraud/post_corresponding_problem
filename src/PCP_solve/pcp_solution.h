@@ -17,7 +17,7 @@ public:
 	void push(Pcp_bloc bloc);
 	void pop();
 
-    bool solve(int depth=0, Pcp_instance instance = Pcp_instance());
+    bool solve(int depth, Pcp_instance instance);
 
     std::string stringify();
     void write_instance();
