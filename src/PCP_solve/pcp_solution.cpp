@@ -61,7 +61,7 @@ void Pcp_solution::pop()
 
 
 bool Pcp_solution::solve(int depth, Pcp_instance instance){
-    std::cout << depth << std::endl;
+    //std::cout << depth << std::endl;
     if (is_solution())
     {
         std::cout << "SOLUTION SIZE = " << _pcp.size() << std::endl;
