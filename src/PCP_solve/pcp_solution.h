@@ -2,6 +2,7 @@
 #define PCP_SOLUTION_H
 
 #include "pcp_bloc.h"
+#include "pcp_instance.h"
 
 class Pcp_solution {
 	unsigned int _length;				// nombre de bloc
@@ -15,6 +16,8 @@ public:
 	bool is_solution();
 	void push(Pcp_bloc bloc);
 	void pop();
+
+    bool solve(int depth=0, Pcp_instance instance = Pcp_instance());
 
     std::string stringify();
     void write_instance();

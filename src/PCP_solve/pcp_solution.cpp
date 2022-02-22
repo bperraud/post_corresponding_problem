@@ -60,6 +60,34 @@ void Pcp_solution::pop()
 }
 
 
+bool Pcp_solution::solve(int depth, Pcp_instance instance = Pcp_instance()){
+    if (is_solution())
+    {
+        cout << "SOLUTION" << pcp << endl;
+        // write in db
+        return ;
+    }
+        //else if (pcp.get_length() == LENGTH)
+    else if (i == 0)
+    {
+        // pas de solution trouvé
+        //cout << "pas de solution taille length" << pcp << endl;
+        return ;
+    }
+    for (Pcp_bloc bloc : instance.getInstance())
+    {
+        if (pcp.is_bloc_possible(bloc))
+        {
+            pcp.push(bloc);
+            solve(i + 1, instance);
+            pcp.pop();
+            solve(i + 1, instance);
+        }
+    }
+}
+
+
+
 std::string Pcp_solution::stringify() {
     std::string res;
     Pcp_bloc bloc;
