@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const Domino = ({topText, bottomText}) => {
+  
   return (
     <div class="domino">
       <div class="dominoes-tile">

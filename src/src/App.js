@@ -1,4 +1,5 @@
 import './App.css';
+import { v4 as uuidv4 } from 'uuid';
 import {DragDropContext, Droppable, Draggable} from 'react-beautiful-dnd'
 import React, { useState } from 'react';
 import Domino from './components/Domino';
@@ -41,6 +42,25 @@ function App() {
 
     updateElements(items);
   }
+
+  const handleClick = (e, index) => {
+    switch (e.detail) {
+      case 1:
+        console.log("1 click ");
+        break;
+      case 2:
+        const items = Array.from(elements);
+        console.log(items.length);
+        const item = items[index];
+        item.id = uuidv4();
+        items.splice(index, 0, item);
+        updateElements(items);
+        break;
+      default:
+        return;
+    }
+  };
+
   return (
     <div className="App">
       <div className='Header'>
@@ -54,9 +74,13 @@ function App() {
                 <ul className="elements" {...provided.droppableProps} ref={provided.innerRef}>
                   {elements.map(({id, topText, bottomText}, index) => {
                     return (
-                      <Draggable key={id} draggableId={id} index={index}>
+                      <Draggable key={index} draggableId={id} index={index}>
                         {(provided) => (
-                          <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+                          <li
+                            ref={provided.innerRef} 
+                            {...provided.draggableProps} 
+                            {...provided.dragHandleProps}
+                            onClick={(e) => handleClick(e, index)}>
                             <Domino topText={topText} bottomText={bottomText}></Domino>
                           </li>
                         )}
