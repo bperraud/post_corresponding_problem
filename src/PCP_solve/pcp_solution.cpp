@@ -72,7 +72,7 @@ bool Pcp_solution::solve(int depth, Pcp_instance instance){
     else if (depth == 0)
     {
         // pas de solution trouvé
-        std::cout << "pas de solution taille length" << std::endl;
+        //std::cout << "pas de solution taille length" << std::endl;
         return false;
     }
     for (Pcp_bloc bloc : instance.getInstance())
