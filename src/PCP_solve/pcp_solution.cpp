@@ -60,7 +60,7 @@ void Pcp_solution::pop()
 }
 
 
-bool Pcp_solution::solve(int depth, Pcp_instance instance = Pcp_instance()){
+bool Pcp_solution::solve(int depth, Pcp_instance instance = Pcp_instance(6, 6)){
     if (is_solution())
     {
         cout << "SOLUTION" << pcp << endl;

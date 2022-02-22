@@ -5,7 +5,7 @@
 #include "pcp_instance.h"
 
 class Pcp_solution {
-	unsigned int _length;				// nombre de bloc
+	unsigned int _length = 0;				// nombre de bloc
 	//unsigned int _width; 				// longueur de la plus grande string
 	std::vector<Pcp_bloc> _pcp;			// liste des blocs actuellement en place
 

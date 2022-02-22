@@ -2,14 +2,23 @@
 #define PCP_SOLVING_H
 
 #include "pcp_bloc.h"
+#include <random>
 
 class Pcp_instance {
 	unsigned int _size;						// nombre de bloc
 	unsigned int _width; 					// longueur de la plus grande string
 	std::vector<Pcp_bloc> _instance;		// liste des blocs
 
+
+
 public:
-	Pcp_instance(unsigned int size, unsigned int width) : _size(size), _width(width) {}
+	Pcp_instance(unsigned int size, unsigned int width) : _size(size), _width(width) {
+        for (int i = 0; i < _size; i++){
+            Pcp_bloc bloc = Pcp_bloc();
+            bloc.generate_blocs(width);
+            _instance.push_back(bloc)
+        }
+    };
 	Pcp_instance(std::initializer_list<std::string>);
 	inline Pcp_bloc getBloc(unsigned int index) { return _instance[index];}
 	inline unsigned int getSize() { return _size;};
