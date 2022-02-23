@@ -18,6 +18,7 @@ class HelpPopup extends React.Component{
                         display some instructions to play the game..
                         display some instructions to play the game..
                         display some instructions to play the game..
+                        {this.props.text}
                     </text>
                     <button className='closebtn' onClick={() => this.props.setTrigger()}> x </button>  
                 </div>

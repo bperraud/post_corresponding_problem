@@ -24,7 +24,7 @@ class GameBoard extends React.Component{
                 </div>
                 <div>
                     {this.state.helpButtonPopUp && 
-                    <HelpPopup setTrigger={this.setTrigger}/>
+                    <HelpPopup setTrigger={this.setTrigger} text={"text test"}/>
                     }
                     <div className='rectangle'></div>
                     <br></br>
