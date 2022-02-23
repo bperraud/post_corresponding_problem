@@ -6,95 +6,25 @@ import Domino from './components/Domino';
 import Navbar from './components/Navbar'
 import ContactForm from './components/ContactForm'
 import GameBoard from './components/GameBoard';
+import Solution from './components/Solution';
 
-const finalElements = [
-  {
-    id: '0',
-    topText: 'B',
-    bottomText: 'CA'
-  },
-  {
-    id: '1',
-    topText: 'A',
-    bottomText: 'AB'
-  },
-  {
-    id: '2',
-    topText: 'CA',
-    bottomText: 'A'
-  },
-  {
-    id: '3',
-    topText: 'ABC',
-    bottomText: 'C'
-  }
-]
 
-function App() {
-  const [elements, updateElements] = useState(finalElements);
-
-  function handleOnDragEnd(result) {
-    if (!result.destination) return;
-
-    const items = Array.from(elements);
-    const [reorderedItem] = items.splice(result.source.index, 1);
-    items.splice(result.destination.index, 0, reorderedItem);
-
-    updateElements(items);
-  }
-
-  const handleClick = (e, index) => {
-    switch (e.detail) {
-      case 1:
-        console.log("1 click ");
-        break;
-      case 2:
-        const items = Array.from(elements);
-        console.log(items.length);
-        const item = items[index];
-        items.splice(index, 0, { ...item, id: uuidv4() });
-        updateElements(items);
-        break;
-      default:
-        return;
-    }
-  };
-
-  return (
-    <div className="App">
-      <div className='Header'>
-        <Navbar/>
-        <GameBoard/>
-      </div>
-      <div id='game'>
-        <DragDropContext onDragEnd={handleOnDragEnd}>
-            <Droppable droppableId="elements" direction='horizontal'>
-              {(provided) => (
-                <ul className="elements" {...provided.droppableProps} ref={provided.innerRef}>
-                  {elements.map(({id, topText, bottomText}, index) => {
-                    return (
-                      <Draggable key={id} draggableId={id} index={index}>
-                        {(provided) => (
-                          <li
-                            ref={provided.innerRef} 
-                            {...provided.draggableProps} 
-                            {...provided.dragHandleProps}
-                            onClick={(e) => handleClick(e, index)}>
-                            <Domino topText={topText} bottomText={bottomText}></Domino>
-                          </li>
-                        )}
-                      </Draggable>
-                    );
-                  })}
-                  {provided.placeholder}
-                </ul>
-              )}
-            </Droppable>
-          </DragDropContext>
+class App extends React.Component {
+  
+  render(){
+    return (
+      <div className="App">
+        <div className='Header'>
+          <Navbar/>
+          <GameBoard/>
+        </div>
+        <div id='game'>
         </div>
         <ContactForm/>
-    </div>
-  );
+      </div>
+    );
+  }
 }
+
 
 export default App;

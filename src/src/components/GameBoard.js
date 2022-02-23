@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './GameBoard.css'
 import HelpPopup from './HelpPopup';
+import Solution from './Solution';
 
 class GameBoard extends React.Component{
     constructor(props){
@@ -26,8 +27,15 @@ class GameBoard extends React.Component{
                     {this.state.helpButtonPopUp && 
                     <HelpPopup setTrigger={this.setTrigger} text={"text test"}/>
                     }
-                    <div className='rectangle'></div>
+                    <div className='rectangle'>
+                    <Solution/>
+                    </div>
                     <br></br>
+                    
+                </div>
+
+                <div>
+                    
                 </div>
             </main>
             
