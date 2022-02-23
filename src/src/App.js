@@ -52,8 +52,7 @@ function App() {
         const items = Array.from(elements);
         console.log(items.length);
         const item = items[index];
-        item.id = uuidv4();
-        items.splice(index, 0, item);
+        items.splice(index, 0, { ...item, id: uuidv4() });
         updateElements(items);
         break;
       default:
@@ -74,7 +73,7 @@ function App() {
                 <ul className="elements" {...provided.droppableProps} ref={provided.innerRef}>
                   {elements.map(({id, topText, bottomText}, index) => {
                     return (
-                      <Draggable key={index} draggableId={id} index={index}>
+                      <Draggable key={id} draggableId={id} index={index}>
                         {(provided) => (
                           <li
                             ref={provided.innerRef} 
