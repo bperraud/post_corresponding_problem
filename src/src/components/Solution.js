@@ -1,28 +1,20 @@
 import { v4 as uuidv4 } from 'uuid';
 import {DragDropContext, Droppable, Draggable} from 'react-beautiful-dnd'
-import React, { useState } from 'react';
+import React from 'react';
 import Domino from './Domino';
-
-
 
 
 class Solution extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-                elements : [
-                    {
-                        id: '0',
-                        topText: 'B',
-                        bottomText: 'CA'
-                    },
-                    {
-                        id: '1',
-                        topText: 'A',
-                        bottomText: 'AB'
-                    }
-                ]           
-            }
+                elements : this.props.elements         
+                }
+    }
+
+    addElement(top, bottom){
+        const obj = {id: uuidv4(), topText : top , bottomText : bottom}
+        this.elements.push(obj)
     }
 
     handleOnDragEnd = (result) => {
@@ -52,40 +44,38 @@ class Solution extends React.Component{
         }
       };
 
+
+
     render(){
         return (
-            <div>
-                <div id='game'>
-                    <DragDropContext onDragEnd={this.handleOnDragEnd}>
-                        <Droppable droppableId="elements" direction='horizontal'>
-                        {(provided) => (
-                            <ul className="elements" {...provided.droppableProps} ref={provided.innerRef}>
-                            {this.state.elements.map(({id, topText, bottomText}, index) => {
-                                return (
-                                <Draggable key={id} draggableId={id} index={index}>
-                                    {(provided) => (
-                                    <li
-                                        ref={provided.innerRef} 
-                                        {...provided.draggableProps} 
-                                        {...provided.dragHandleProps}
-                                        onClick={(e) => this.handleClick(e, index)}>
-                                        <Domino topText={topText} bottomText={bottomText}></Domino>
-                                    </li>
-                                    )}
-                                </Draggable>
-                                );
-                            })}
-                            {provided.placeholder}
-                            </ul>
-                        )}
-                        </Droppable>
-                    </DragDropContext>
-                </div>
-            </div>
+            <div id='game'>
+                <DragDropContext onDragEnd={this.handleOnDragEnd}>
+                    <Droppable droppableId="elements" direction='horizontal'>
+                    {(provided) => (
+                        <ul className="elements" {...provided.droppableProps} ref={provided.innerRef}>
+                        {this.state.elements.map(({id, topText, bottomText}, index) => {
+                            return (
+                            <Draggable key={id} draggableId={id} index={index}>
+                                {(provided) => (
+                                <li
+                                    ref={provided.innerRef} 
+                                    {...provided.draggableProps} 
+                                    {...provided.dragHandleProps}
+                                    onClick={(e) => this.handleClick(e, index)}>
+                                    <Domino topText={topText} bottomText={bottomText}></Domino>
+                                </li>
+                                )}
+                            </Draggable>
+                            );
+                        })}
+                        {provided.placeholder}
+                        </ul>
+                    )}
+                    </Droppable>
+                </DragDropContext>
+            </div>   
         );
-
     }
 }
-
 
 export default Solution

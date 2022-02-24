@@ -17,10 +17,10 @@ const Domino = ({topText, bottomText}) => {
   )
 }
 
-Domino.defaultProps = {
+/*Domino.defaultProps = {
   topText: 'AB',
   bottomText: 'BC'
-}
+}*/
 
 Domino.prototype = {
   topText: PropTypes.string,

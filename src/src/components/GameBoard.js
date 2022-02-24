@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './GameBoard.css'
 import HelpPopup from './HelpPopup';
+import Instance from './Instance';
 import Solution from './Solution';
 
 class GameBoard extends React.Component{
@@ -23,25 +24,18 @@ class GameBoard extends React.Component{
                     <button className='gameButtons'>Start playing</button>
                     <button className='gameButtons' onClick={this.setTrigger}>Help ?</button>
                 </div>
-                <div>
-                    {this.state.helpButtonPopUp && 
-                    <HelpPopup setTrigger={this.setTrigger} text={"text test"}/>
-                    }
-                    <div className='rectangle'>
-                    <Solution/>
-                    </div>
-                    <br></br>
-                    
-                </div>
-
-                <div>
-                    
+                    <div>
+                        {this.state.helpButtonPopUp && 
+                        <HelpPopup setTrigger={this.setTrigger} text={"text test"}/>}
+                        <div className='rectangle'>
+                        <Instance data="1,2,3,4"/>
+                        
+                    </div>                                     
                 </div>
             </main>
             
         );
     }
-
 }
 
 export default GameBoard
