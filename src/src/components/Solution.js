@@ -8,7 +8,7 @@ class Solution extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-                elements : this.props.elements         
+                elements : []        
                 }
     }
 
@@ -23,8 +23,6 @@ class Solution extends React.Component{
         const [reorderedItem] = items.splice(result.source.index, 1);
         items.splice(result.destination.index, 0, reorderedItem);
         this.setState({elements : items});
-        console.log(items);
-        console.log(this.state.elements);
       }
 
     handleClick = (e, index) => {
@@ -44,7 +42,16 @@ class Solution extends React.Component{
         }
       };
 
-
+    parseElements(){
+        for (let i=0;i<this.props.elements.length; i++){
+            const Obj = {id: this.props.elements[i][0], topText: this.props.elements[i][1], bottomText: this.props.elements[i][2]}
+            console.log(Obj)
+            const temp = [...this.state.elements]
+            temp.push(Obj)
+            this.setState({elements : temp})
+        }
+        
+    }
 
     render(){
         return (

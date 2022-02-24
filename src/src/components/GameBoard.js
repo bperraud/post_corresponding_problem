@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {getSession} from '@mysql/xdevapi';
+//import {getSession} from '@mysql/xdevapi';
 import './GameBoard.css'
 import HelpPopup from './HelpPopup';
 import Instance from './Instance';
@@ -12,13 +12,12 @@ class GameBoard extends React.Component{
         this.state = {
             helpButtonPopUp: false,
         };
-        this.data = this.get_from_db();
     }
 
     setTrigger = () =>{
         this.setState({helpButtonPopUp : !this.state.helpButtonPopUp})        
     }
-
+/*
     async get_from_db() {
         const config = {
             password: '86Ex$y3s',
@@ -39,6 +38,8 @@ class GameBoard extends React.Component{
                 console.log(error)
             });
     }
+    */
+
 
     render(){
         return(
@@ -49,10 +50,11 @@ class GameBoard extends React.Component{
                     <button className='gameButtons' onClick={this.setTrigger}>Help ?</button>
                 </div>
                     <div>
+                        <Instance data="11,22,33,11"/>
                         {this.state.helpButtonPopUp && 
                         <HelpPopup setTrigger={this.setTrigger} text={"text test"}/>}
                         <div className='rectangle'>
-                        <Instance data={this.data}/>
+                        
                         
                     </div>                                     
                 </div>

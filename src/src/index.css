@@ -19,7 +19,7 @@ ul {
   background-color: transparent;
   border: transparent;
   cursor: grabbing;
-  margin: 10px;
+  margin: 7px;
   color: black;
 }
 
@@ -28,9 +28,10 @@ ul {
   flex-direction: column;
 }
 
-.dominoes-tile__top, .dominoes-tile__bottom {
-  width: 100px;
-  height: 100px;
+.dominoes-tile__top,
+.dominoes-tile__bottom {
+  width: 50px;
+  height: 50px;
   background: #eae3d3;
   position: relative;
   box-sizing: border-box;
@@ -39,7 +40,8 @@ ul {
   align-items: center;
 }
 
-.dominoes-tile__top:before, .dominoes-tile__bottom:before {
+.dominoes-tile__top:before,
+.dominoes-tile__bottom:before {
   content: "";
   display: block;
   width: 80%;
@@ -68,11 +70,18 @@ ul {
 }
 
 p {
-  font-size: x-large;
+  font-size: medium;
 }
 
 #game {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
 }
