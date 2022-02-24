@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import {getSession} from '@mysql/xdevapi';
 import './GameBoard.css'
 import HelpPopup from './HelpPopup';
 import Instance from './Instance';
 import Solution from './Solution';
+import Pair from "../game/Pair";
 
 class GameBoard extends React.Component{
     constructor(props){
@@ -10,10 +12,32 @@ class GameBoard extends React.Component{
         this.state = {
             helpButtonPopUp: false,
         };
+        this.data = this.get_from_db();
     }
 
     setTrigger = () =>{
         this.setState({helpButtonPopUp : !this.state.helpButtonPopUp})        
+    }
+
+    async get_from_db() {
+        const config = {
+            password: '86Ex$y3s',
+            user: 'pcp-user',
+            host: 'pcp.digitelstudios.lu:3306',
+            schema: 'pcp-db'
+        };
+
+        await getSession(config)
+            .then(session => {
+                return session.sql('select * from instances order by rand()')
+                    .execute().then(session.close());
+            })
+            .then(result => {
+                this.data = result.fetchOne()[1];
+            }).catch(error => {
+                // Use `error` here without `throw`ing -- report it, put it in a log, etc.
+                console.log(error)
+            });
     }
 
     render(){
@@ -28,7 +52,7 @@ class GameBoard extends React.Component{
                         {this.state.helpButtonPopUp && 
                         <HelpPopup setTrigger={this.setTrigger} text={"text test"}/>}
                         <div className='rectangle'>
-                        <Instance data="1,2,3,4"/>
+                        <Instance data={this.data}/>
                         
                     </div>                                     
                 </div>
