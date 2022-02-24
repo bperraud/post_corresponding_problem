@@ -4,6 +4,10 @@
 #include "pcp_bloc.h"
 #include "pcp_instance.h"
 
+#include <cppconn/driver.h>
+#include <cppconn/exception.h>
+#include <cppconn/statement.h>
+
 class Pcp_solution {
 	unsigned int _length = 0;				// nombre de bloc
 	//unsigned int _width; 				// longueur de la plus grande string
