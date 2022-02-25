@@ -50,7 +50,7 @@ class GameBoard extends React.Component{
                     <button className='gameButtons' onClick={this.setTrigger}>Help ?</button>
                 </div>
                     <div>
-                        <Instance data="11,22,33,11,22,22,11,00"/>
+                        <Instance data="1,21,112,11"/>
                         {this.state.helpButtonPopUp && 
                         <HelpPopup setTrigger={this.setTrigger} text={"text test"}/>}
                         <div className='rectangle'>

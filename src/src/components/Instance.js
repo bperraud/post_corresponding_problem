@@ -1,7 +1,7 @@
 import React from 'react'
 import Domino from './Domino';
+import HelpPopup from './HelpPopup'
 import { v4 as uuidv4 } from 'uuid';
-
 import {DragDropContext, Droppable, Draggable} from 'react-beautiful-dnd'
 
 class Instance extends React.Component {
@@ -10,7 +10,8 @@ class Instance extends React.Component {
         super(props);
         this.state = {
             dominos : [],
-            addedDominos : []
+            addedDominos : [],
+            won : false
         }
         this.convertStringToArray();
 
@@ -38,8 +39,7 @@ class Instance extends React.Component {
                 break;
             default:
                 return;
-
-    }
+        }
     }
 
     handleOnDragEnd = (result) => {
@@ -64,6 +64,25 @@ class Instance extends React.Component {
         }
       };
 
+      isWon(){
+          var top = "";
+          var bottom = "";
+          for (let i = 0; i<this.state.addedDominos.length; i++){
+                top += this.state.addedDominos[i].topText;
+                bottom += this.state.addedDominos[i].bottomText;
+          }
+          console.log("top : "+ top)
+          console.log("bottom : "+ bottom)
+          this.state.won = top === bottom;
+          console.log("won : "+this.state.won)
+          return top === bottom && top !== "";
+      }
+
+    setTrigger = () => {
+        this.setState({won : false})
+        this.setState({addedDominos : []})
+    }
+
 
     render(){
         return (
@@ -86,6 +105,7 @@ class Instance extends React.Component {
                 </div>
                 <div>
                     Solution : 
+                    {this.isWon() && <HelpPopup setTrigger={this.setTrigger}text = "You won"/>}
                 </div>
                 <div id='game'>
                 <DragDropContext onDragEnd={this.handleOnDragEnd}>
@@ -112,7 +132,7 @@ class Instance extends React.Component {
                     )}
                     </Droppable>
                 </DragDropContext>
-            </div>   
+            </div>
             </div>
         )
     }

@@ -1,5 +1,6 @@
 .popup {
   position: fixed;
+
   top: 0;
   left: 0;
   width: 100%;
@@ -17,6 +18,7 @@
   max-width: 420px;
   background-color: rgb(177, 199, 231);
   border-radius: 10px;
+  position: absolute;
 }
 
 .pop-inner .closebtn {
