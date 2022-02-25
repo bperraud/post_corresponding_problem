@@ -28,6 +28,11 @@ ul {
   flex-direction: column;
 }
 
+.domino:hover {
+  border: rgb(0, 8, 8);
+  border-width: 3px;
+}
+
 .dominoes-tile__top,
 .dominoes-tile__bottom {
   width: 50px;

@@ -26,12 +26,20 @@ class Instance extends React.Component {
         }
     }
   
-    addToSolution = ( _top, _bottom) =>{
-        const obj = {id : uuidv4(), topText: _top, bottomText :_bottom}
-        const temp = [...this.state.addedDominos]
-        temp.push(obj);
-        this.setState({ addedDominos : temp})
+    addToSolution = (e, _top, _bottom) =>{
+        switch(e.detail){
+            case 1:
+                break;
+            case 2:
+                const obj = {id : uuidv4(), topText: _top, bottomText :_bottom}
+                const temp = [...this.state.addedDominos]
+                temp.push(obj);
+                this.setState({ addedDominos : temp})
+                break;
+            default:
+                return;
 
+    }
     }
 
     handleOnDragEnd = (result) => {
@@ -66,7 +74,7 @@ class Instance extends React.Component {
                         {this.state.dominos.map(({topText, bottomText}, index) => {
                             return (
                                 <li>
-                                    <div onClick={() => this.addToSolution(topText, bottomText)}>
+                                    <div onClick={(e) => this.addToSolution(e,topText, bottomText)}>
                                     <Domino topText={topText} bottomText={bottomText}></Domino>
                                     </div>
                                 </li>
