@@ -105,7 +105,7 @@ class Instance extends React.Component {
                 </div>
                 <div>
                     Solution : 
-                    {this.isWon() && <HelpPopup setTrigger={this.setTrigger}text = "You won"/>}
+                   
                 </div>
                 <div id='game'>
                 <DragDropContext onDragEnd={this.handleOnDragEnd}>
@@ -130,9 +130,12 @@ class Instance extends React.Component {
                         {provided.placeholder}
                         </ul>
                     )}
+                    
                     </Droppable>
                 </DragDropContext>
+                
             </div>
+            {this.isWon() && <HelpPopup setTrigger={this.setTrigger}text = "You won"/>}
             </div>
         )
     }
