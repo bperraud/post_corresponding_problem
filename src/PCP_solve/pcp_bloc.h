@@ -5,11 +5,12 @@
 #define MAX(a,b) ((a)>(b)?(a):(b))
 #define MIN(a,b) ((a)<(b)?(a):(b))
 
-
 #include <string>
 #include <vector>
 #include <iostream>
 #include <algorithm>
+#include <random>
+#include <ctime>
 
 class Pcp_bloc {
 	std::string		_top;				// string du haut
@@ -26,9 +27,9 @@ public:
 	bool has_prefix();
 	inline int top_less_bottom_len() {return _top.size() - _bottom.size();}
 	inline int top_less_bottom_ones() {return std::count(_top.begin(), _top.end(), '1') - std::count(_bottom.begin(), _bottom.end(), '1');}
+	void generate_blocs(int);
 
 	friend std::ostream& operator<< (std::ostream&, Pcp_bloc&);
-    void generate_blocs(int max_len);
 };
 
 #endif

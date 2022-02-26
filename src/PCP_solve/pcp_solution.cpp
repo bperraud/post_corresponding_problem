@@ -1,5 +1,6 @@
 #include "pcp_solution.h"
 
+# define LENGTH 40
 
 bool Pcp_solution::is_solution()
 {
@@ -55,41 +56,33 @@ void Pcp_solution::pop()
 	}
 }
 
-
 bool Pcp_solution::solve(int depth, Pcp_instance instance){
-    //std::cout << depth << std::endl;
     if (is_solution())
     {
         std::cout << "SOLUTION SIZE = " << _pcp.size() << std::endl;
-        // write in db
-        return true;
+		//std::cout  << *this << std::endl;
+        return (true);
     }
-        //else if (pcp.get_length() == LENGTH)
-    else if (depth == 0)
-    {
-        // pas de solution trouvé
-        //std::cout << "pas de solution taille length" << std::endl;
-        return false;
-    }
+	else if (depth == LENGTH)
+		return (false);
     for (Pcp_bloc bloc : instance.getInstance())
     {
-        //std::cout << bloc << std::endl;
-
-        push(bloc);
-        bool res = solve(depth -1, instance);
-        if (res){
-            return true;
-        }
-        pop();
-        //solve(depth -1, instance);
-
+		if (is_bloc_possible(bloc))
+		{
+			push(bloc);
+			solve(depth + 1, instance);
+			pop();
+		}
     }
-    //std::cout << "what am I doing here?" << std::endl;
-    return false;
+    return (false);
 }
 
+std::ostream& operator<< (std::ostream& out,  Pcp_solution& v){
+	out << "[ "; for (auto x: v._pcp) out << x << ' '; out << ']';
+	return out;
+}
 
-
+/*
 std::string Pcp_solution::stringify() {
     std::string res;
     Pcp_bloc bloc;
@@ -101,14 +94,13 @@ std::string Pcp_solution::stringify() {
     return res;
 }
 
-
 void Pcp_solution::write_instance() {
     try {
         sql::Driver *driver;
         sql::Connection *con;
         sql::Statement *stmt;
 
-        /* Create a connection */
+        // Create a connection
         driver = get_driver_instance();
         con = driver->connect("pcp.digitelstudios.lu:3306", "pcp-user", "86Ex$y3s");
         con->setSchema("pcp-db");
@@ -141,7 +133,7 @@ bool Pcp_solution::is_in_db() {
 
         bool is_in_db = false;
 
-        /* Create a connection */
+        // Create a connection
         driver = get_driver_instance();
         //std::cout << "here";
         con = driver->connect("pcp.digitelstudios.lu:3306", "pcp-user", "86Ex$y3s");
@@ -170,9 +162,6 @@ bool Pcp_solution::is_in_db() {
     }
     return false;
 }
+ */
 
 
-std::ostream& operator<< (std::ostream& out,  Pcp_solution& v){
-	out << "[ "; for (auto x: v._pcp) out << x << ' '; out << ']';
-	return out;
-}

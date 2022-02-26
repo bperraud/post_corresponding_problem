@@ -10,6 +10,19 @@ Pcp_instance::Pcp_instance(std::initializer_list<std::string> blocs) : _size(blo
 	}
 }
 
+Pcp_instance::Pcp_instance(unsigned int size, unsigned int width) : _size(size)
+{
+	for (int i = 0; i < _size; i++){
+		Pcp_bloc bloc = Pcp_bloc();
+		bloc.generate_blocs(width);
+		_instance.push_back(bloc);
+		size_t len;
+		len = MAX(bloc.get_top().length(), bloc.get_bottom().length());
+		if ( len > _width)
+			_width = len;
+	}
+}
+
 bool Pcp_instance::prefix_filter()
 {
 	for (int i = 0; i < _size ; i++)

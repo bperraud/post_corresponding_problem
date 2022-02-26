@@ -1,5 +1,4 @@
 #include "pcp_bloc.h"
-#include <random>
 
 Pcp_bloc::Pcp_bloc(std::string top, std::string bottom)
 {
@@ -7,7 +6,6 @@ Pcp_bloc::Pcp_bloc(std::string top, std::string bottom)
 	_bottom = bottom;
 	_width = MAX(top.length(), bottom.length());
 }
-
 
 bool Pcp_bloc::has_prefix()
 {
@@ -24,19 +22,22 @@ void Pcp_bloc::generate_blocs(int max_len){
     int len = rand() % max_len + 1; //no empty string
     std::string top;
     int bin_gen;
-    for (int i = 0; i < len; i++){
+    for (int i = 0; i < len; i++)
+	{
         bin_gen = rand() % 2;
         top.append(std::to_string(bin_gen));
     }
-
-    len = rand() % max_len;
+    len = rand() % max_len + 1;
     std::string bot;
-    for (int i = 0; i < len; i++){
+    for (int i = 0; i < len; i++)
+	{
         bin_gen = rand() % 2;
         bot.append(std::to_string(bin_gen));
     }
-
     _top = top;
     _bottom = bot;
+
+	if (_top == _bottom)
+		_top[0] = (_top[0] == '0' ? '1' : '0' ) ;
 }
 
