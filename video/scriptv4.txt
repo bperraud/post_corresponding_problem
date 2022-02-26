@@ -1,0 +1,73 @@
+--INTRODUCTION--
+
+Le terme informatique à lui seul est entre temps plus vague que précis.
+
+En effet ce domaine auquel nous avons à faire tous les jours est tellement varié dans ses applications qu'on peut en utiliser pour résoudre d'innombrables problèmes.
+
+Dans cette vidéo nous allons nous pencher sur un tel problème bien particulier: le problème de correspondance de Post, ou encore PCP.
+
+Et non, ça n'a rien à voir avec la Poste et l'envoi de lettres, quoique le nom du problème pourrait nous laisser croire.
+
+PCP est un problème inventé par Emil Leon Post, un scientifique amérique à la vie compliquée, sûrement ce qui le poussa à travailler dans le domaine de la logique.
+
+Trève de bavardages passons au vif du sujet, PCP.
+
+--PCP-- 
+
+[Afficher image alphabet, puis diagramme englobant les "alphabets" avec "ABC..." dedans avec d'autres]
+Nous parlerons dans ce contexte d'alphabets. Bien que la suite "A,B,C,D,E,F,..." est UN alphabet ce n'est pas le seul. En effet, il existe une infinité d'alphabets, car un alphabet n'est en soi qu'un groupement des symboles, comme par exemple "1,6,3,9,5", "@,*,&,€" et notamment "A,B,C,D,E,F,..." . 
+
+Imaginez que vous ayez un alphabet de taille finie, c'est à dire un tel ensemble de symboles (lettres chiffres ou autres (oui même des emojis si vous insistez)) qui a un nombre de symboles que nous (ou une machine) pourrions compter. 
+Par simplicité nous prendrons l'alphabet "01" à 2 symboles.
+[Afficher alphabet "0,1"]
+
+[Afficher listes]
+Ensuite vous avez deux listes de même taille contenant des mots composés des symboles de notre alphabet, prenons par exemple une liste A contenant les mots ["0","01","110"] et une liste B contenant les mots ["100", "00", "11"].
+Enfin, nous avons un indice qui premet de retrouver un mot d'une liste sur base de sa position, par exemple l'indice 1 pour A nous donne "0" et pour la liste B "100"
+[Highlight indice: 1, montrer les mots à la position 1 etc...]
+
+[Afficher question en la lisant]
+Ceci sont les outils avec lesquels nous travaillerons pour résoudre le problème suivant: Est-ce que je peux trouver une suite d'indices, telle qu'en prenant les mots associés aux indices pour chaque liste, on forme deux mots identiques?
+
+
+Reprenons nos exemples de tantôt et la suite d'indices "3231". Est-ce que le mot formé par les mots de la liste A associés à ces indices est le même que pour les mots de B?
+
+[Construction solution slides]
+Construisons la solution ensemble étape par étape. Nous avons comme premier indice, l'indice 3, nous prenons donc le troisième mot de chaque liste, en l'occurance "110" pour A et "11" pour B, et les mettons dans notre solution. Nous aurons en haut la solution construite par A et en dessous celle construite par B.
+
+Ensuite nous prenons pour l'indice 2 "01" pour A et "00" pour B, et les rajoutons à la solution respective. Alors, nous répétons la même chose que pour le premier indice et enfin nous avons "1" comme dernier indice, nous terminons donc notre solution avec "0" pour A et "100" pour B.
+[Affichage slide solution]
+On peut enfin voir qu'en effet nous avons formé avec les mots tirés de A et de B exactement le même mot en utilisant la suite d'indices "3231". Donc, pour répondre à la fameuse question qu'on s'était posée, oui, on peut trouver une suite d'indices formant le même mot pour les deux listes de cette instance.
+
+Notons que PCP se focalise non pas sur trouver une telle suite d'indices, mais sur la possibilité de pouvoir la former, un simple oui ou non suffit comme réponse.
+
+[Image de points d'interrogation, puis image avec paneau indiquant "danger imminent", personne réflechissant devant]
+Ce qui rend PCP intéressant est donc cette décision sur si un problème est solvable, c'est donc un problème de décicabilité.
+[Engrenages dans la tête de la personne]
+Un problème de décidabilité est, de façon simplifiée, un problème pour lequel on veut simplement répondre oui ou non à la question, sans devoir donner de comment.
+Par exemple, lorsqu'on se trouve devant un panneau indiquant "danger imminent", le problème pourrait être "Est-ce que je continue ?", et on le résoudrait donc en disant "oui j'y vais" ou "non" simplement.
+[puis déclic et prend une décision]
+
+--INDECIDABILITE--
+
+Mais PCP est un problème vraiment indécidable, mais qu'est-ce que ça veut dire?
+
+Evidement quelque chose qui est indécidable est une chose pour laquelle on ne peut pas prendre de décision, on ne peut pas répondre oui ou non à la problématique. Pourtant nous venons juste de voir que c'est tout à fait possible.
+En effet, de nombreauses instances du PCP sont clairement décidables, mais ce n'est absolument pas le cas de toutes.
+Il existe des instances où une machine est tout à fait incapable de décider, tournant sans fin en rond pour trouver une réponse.
+D'un point de vue informatique on définit donc un problème comme indécidable, s'il n'existe pas d'algorithme (programme) qui peut répondre à la problématique peu importe l'instance.
+
+En gardant l'alphabet d'avant et en prenant les deux listes A et B ci. Cet exemple semble bien simple à première vue, mais essayez de me dire si oui ou non il existe une solution? (faites pause le temps de réfléchir à ce sujet)
+[afficher un alphabet et deux listes]
+Trouvé ou bien êtes-vous indécis?
+Certainement le second, on voit donc clairement que cette instance reste indécidable pour l'être humain, mais en forçant un peu on peut trouver une solution avec une machine.
+[afficher solution]
+Cette solution est te taille 44, elle contient autant de blocs de mots des deux listes. Cette instance n'est donc pas indécidable en soi, mais reste très difficile, mais prenons l'instance suivante.
+[afficher instance indécidable pour une machine]
+Celle-ci même pour une machine était indécidable, le programme qui a pu résoudre l'instance précédente tourne à l'infini pour cette instance-ci, on limite donc souvent ce genre d'algorithme à une certaine taille pour la solution, afin d'éviter de réellement tourner en rond à l'infini.
+Peut-être qu'un jour un algorithme sera trouvé pour décider de cette instance, mais qui sait, cet algorithme pourrait alors bloquer sur une instance encore plus difficile, on pourrait continuer cela à l'infini.
+
+[Screenshots game PCP]
+Enfin tout ça est difficile à cerner juste en nous écoutant, c'est pour ça nous avons programmé un petit jeu pour vous. Ce jeu vous confrontera à différentes instances de problèmes de Post, et vous demandera de voir si oui ou non vous pouvez trouver une solution. Elle vous laissera former des mots afin de voir comment PCP fonctionne et afin que vous puissiez en direct voir si oui ou non il y a une solution.
+Vous trouverez le jeu à l'adresse: https://pcp.digitelstudios.lu/
+
