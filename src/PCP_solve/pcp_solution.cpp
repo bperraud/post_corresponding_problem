@@ -1,7 +1,5 @@
 #include "pcp_solution.h"
 
-# define LENGTH 40
-
 bool Pcp_solution::is_solution()
 {
 	// peut être opti
@@ -9,7 +7,7 @@ bool Pcp_solution::is_solution()
 	{
 		std::string top;
 		std::string bottom;
-		for (std::size_t i = 0; i < _length; i++)
+		for (std::size_t i = 0; i < _pcp.size(); i++)
 		{
 			Pcp_bloc bloc = _pcp[i];
 			top += bloc.get_top();
@@ -27,11 +25,10 @@ bool Pcp_solution::is_bloc_possible(Pcp_bloc &bloc)
 	{
 		std::string top;
 		std::string bottom;
-		for (std::size_t i = 0; i < _length; i++)
+		for (Pcp_bloc bloc : _pcp)
 		{
-			Pcp_bloc b = _pcp[i];
-			top += b.get_top();
-			bottom += b.get_bottom();
+			top += bloc.get_top();
+			bottom += bloc.get_bottom();
 		}
 		top += bloc.get_top();
 		bottom += bloc.get_bottom();
@@ -44,33 +41,39 @@ bool Pcp_solution::is_bloc_possible(Pcp_bloc &bloc)
 void Pcp_solution::push(Pcp_bloc bloc)
 {
 	_pcp.push_back(bloc);
-	_length += 1;
 }
 
 void Pcp_solution::pop()
 {
 	if (!_pcp.empty())
-	{
 		_pcp.pop_back();
-		_length -= 1;
-	}
 }
 
 bool Pcp_solution::solve(int depth, Pcp_instance instance){
+
+	if (_pcp.size() >= 2)
+		std::cout << *this << std::endl;
+
     if (is_solution())
     {
+		if (_pcp.size() < _best )
+		{
+			_best_pcp = _pcp;
+			_best = _pcp.size();
+		}
         std::cout << "SOLUTION SIZE = " << _pcp.size() << std::endl;
-		//std::cout  << *this << std::endl;
         return (true);
     }
-	else if (depth == LENGTH)
+	else if (depth == 0)
 		return (false);
     for (Pcp_bloc bloc : instance.getInstance())
     {
 		if (is_bloc_possible(bloc))
 		{
 			push(bloc);
-			solve(depth + 1, instance);
+			//if (solve(depth - 1, instance))
+				//return (true);
+			solve(depth - 1, instance);
 			pop();
 		}
     }
@@ -79,6 +82,7 @@ bool Pcp_solution::solve(int depth, Pcp_instance instance){
 
 std::ostream& operator<< (std::ostream& out,  Pcp_solution& v){
 	out << "[ "; for (auto x: v._pcp) out << x << ' '; out << ']';
+	//out << "[ "; for (auto x: v._best_pcp) out << x << ' '; out << ']';
 	return out;
 }
 

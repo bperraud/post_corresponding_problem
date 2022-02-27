@@ -9,12 +9,14 @@
 #include <cppconn/statement.h>
 
 class Pcp_solution {
-	unsigned int _length = 0;				// nombre de bloc
-	std::vector<Pcp_bloc> _pcp;			// liste des blocs actuellement en place
+	std::vector<Pcp_bloc> _pcp;				// liste des blocs actuellement en place
+	std::vector<Pcp_bloc> _best_pcp;
+	size_t	_best;
 
 public:
-	Pcp_solution() noexcept = default;
-	inline unsigned int get_length(){ return _length; }
+	//Pcp_solution() noexcept = default;
+	Pcp_solution (int best = 1000) {_best = best; }
+	inline size_t get_length(){ return _best; }
 	bool is_bloc_possible(Pcp_bloc &bloc);
 	bool is_solution();
 	void push(Pcp_bloc);
