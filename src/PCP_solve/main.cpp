@@ -11,11 +11,11 @@ void generate_instance(int instance_size, int instance_width, int depth)
 	while (i++ < ITERATION)
 	{
 		Pcp_instance inst = Pcp_instance(instance_size, instance_width);										// random gen
-		if (!(inst.length_balance_filter() || inst.element_balance_filter() || inst.prefix_filter()))		// if instance can have solution
+		if (!(inst.length_balance_filter() || inst.element_balance_filter() || inst.prefix_filter()))		    // if instance can have solution
 		{
 			//std::cout << "rand instance " << i  << " : " << inst << std::endl;
 			Pcp_solution pcp = Pcp_solution();
-			//if (pcp.solve(depth, inst) && pcp.get_length() > depth/DIV )
+			//if (pcp.solve(depth, inst) && pcp.get_length() > depth/DIV )			// filtre
 			if (pcp.solve(depth, inst))
 			{
 				std::cout << "instance : " <<  inst << std::endl;
@@ -44,7 +44,7 @@ int main(void)
 	srand(time(0));					// set random seed
 
     // LEVEL 1
-	generate_instance(6, 3, 40);
+	generate_instance(6, 3, 30);
 	// LEVEL 2
 	//generate_instance(3, 4, )
 	// LEVEL 3

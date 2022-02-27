@@ -51,7 +51,7 @@ void Pcp_solution::pop()
 
 bool Pcp_solution::solve(int depth, Pcp_instance instance){
 
-	if (_pcp.size() >= 2)
+	if (_pcp.size() >= 2)		// juste pour les tests
 		std::cout << *this << std::endl;
 
     if (is_solution())
@@ -71,8 +71,6 @@ bool Pcp_solution::solve(int depth, Pcp_instance instance){
 		if (is_bloc_possible(bloc))
 		{
 			push(bloc);
-			//if (solve(depth - 1, instance))
-				//return (true);
 			solve(depth - 1, instance);
 			pop();
 		}
