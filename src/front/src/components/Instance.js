@@ -13,14 +13,14 @@ class Instance extends React.Component {
             addedDominos : [],
             won : false
         }
-        this.convertStringToArray();
-
     }
 
+
     convertStringToArray(){
+        this.state.dominos = []
         const receiveddata =  this.props.data;
+        console.log("received " + receiveddata);
         const dataToString = JSON.stringify(receiveddata)
-        console.log(dataToString);
         const ConvertedData = dataToString.split(",");
         if (ConvertedData.length%2 === 0){
             for (let i=0; i < ConvertedData.length ; i+=2){
@@ -87,6 +87,7 @@ class Instance extends React.Component {
 
 
     render(){
+        this.convertStringToArray();
         return (
             <div>
                 <div>Instance :</div>
@@ -107,7 +108,6 @@ class Instance extends React.Component {
                 </div>
                 <div>
                     Solution : 
-                   
                 </div>
                 <div id='game'>
                 <DragDropContext onDragEnd={this.handleOnDragEnd}>

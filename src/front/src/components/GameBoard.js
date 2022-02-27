@@ -20,19 +20,18 @@ class GameBoard extends React.Component{
         this.setState({helpButtonPopUp : !this.state.helpButtonPopUp})        
     }
 
-    componentDidMount(){
+    getfromback = () =>{
+        this.setState({dataInstance : ""})
         axios.get('http://localhost:3001/api/get')
         .then((response)=>
         this.setState({dataInstance : response.data}))      
-        
     }
 
     render(){
-        
         return(
             <main>
                 <div>                
-                    <button className='gameButtons'>Load Instance</button>
+                    <button className='gameButtons' onClick={this.getfromback}>Load Instance</button>
                     <button className='gameButtons'>Start playing</button>
                     <button className='gameButtons' onClick={this.setTrigger}>Help ?</button>
                 </div>
