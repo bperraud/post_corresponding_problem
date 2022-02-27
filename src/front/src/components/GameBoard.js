@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-//import {getSession} from '@mysql/xdevapi';
+import { useEffect } from 'react';
+import axios from 'axios';
 import './GameBoard.css'
 import HelpPopup from './HelpPopup';
 import Instance from './Instance';
@@ -11,37 +12,23 @@ class GameBoard extends React.Component{
         super(props);
         this.state = {
             helpButtonPopUp: false,
+            dataInstance : "",
         };
     }
 
     setTrigger = () =>{
         this.setState({helpButtonPopUp : !this.state.helpButtonPopUp})        
     }
-/*
-    async get_from_db() {
-        const config = {
-            password: '86Ex$y3s',
-            user: 'pcp-user',
-            host: 'pcp.digitelstudios.lu:3306',
-            schema: 'pcp-db'
-        };
 
-        await getSession(config)
-            .then(session => {
-                return session.sql('select * from instances order by rand()')
-                    .execute().then(session.close());
-            })
-            .then(result => {
-                this.data = result.fetchOne()[1];
-            }).catch(error => {
-                // Use `error` here without `throw`ing -- report it, put it in a log, etc.
-                console.log(error)
-            });
+    componentDidMount(){
+        axios.get('http://localhost:3001/api/get')
+        .then((response)=>
+        this.setState({dataInstance : response.data}))      
+        
     }
-    */
-
 
     render(){
+        
         return(
             <main>
                 <div>                
@@ -50,12 +37,11 @@ class GameBoard extends React.Component{
                     <button className='gameButtons' onClick={this.setTrigger}>Help ?</button>
                 </div>
                     <div>
-                        <Instance data="1,21,112,11"/>
+                        instance : {this.state.dataInstance}
+                        <Instance data={this.state.dataInstance}/>
                         {this.state.helpButtonPopUp && 
                         <HelpPopup setTrigger={this.setTrigger} text={"text test"}/>}
                         <div className='rectangle'>
-                        
-                        
                     </div>                                     
                 </div>
             </main>

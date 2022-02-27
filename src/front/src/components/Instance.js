@@ -18,10 +18,15 @@ class Instance extends React.Component {
     }
 
     convertStringToArray(){
-        const ConvertedData = this.props.data.split(",");
+        const receiveddata =  this.props.data;
+        const dataToString = JSON.stringify(receiveddata)
+        console.log(dataToString);
+        const ConvertedData = dataToString.split(",");
         if (ConvertedData.length%2 === 0){
             for (let i=0; i < ConvertedData.length ; i+=2){
-                const Obj = {id: uuidv4(), topText : ConvertedData[i] , bottomText : ConvertedData[i+1]}
+                let top = ConvertedData[i].replace('"',"")
+                let bottom = ConvertedData[i+1].replace('"',"")
+                const Obj = {id: uuidv4(), topText : top , bottomText : bottom}
                 this.state.dominos.push(Obj)
             }
         }
@@ -71,10 +76,7 @@ class Instance extends React.Component {
                 top += this.state.addedDominos[i].topText;
                 bottom += this.state.addedDominos[i].bottomText;
           }
-          console.log("top : "+ top)
-          console.log("bottom : "+ bottom)
           this.state.won = top === bottom;
-          console.log("won : "+this.state.won)
           return top === bottom && top !== "";
       }
 
@@ -140,9 +142,6 @@ class Instance extends React.Component {
         )
     }
 }
-
-
-
 
 
 export default Instance
