@@ -25,10 +25,10 @@ bool Pcp_solution::is_bloc_possible(Pcp_bloc &bloc)
 	{
 		std::string top;
 		std::string bottom;
-		for (Pcp_bloc bloc : _pcp)
+		for (Pcp_bloc b : _pcp)
 		{
-			top += bloc.get_top();
-			bottom += bloc.get_bottom();
+			top += b.get_top();
+			bottom += b.get_bottom();
 		}
 		top += bloc.get_top();
 		bottom += bloc.get_bottom();
@@ -49,11 +49,8 @@ void Pcp_solution::pop()
 		_pcp.pop_back();
 }
 
-bool Pcp_solution::solve(int depth, Pcp_instance instance){
-
-	if (_pcp.size() >= 2)		// juste pour les tests
-		std::cout << *this << std::endl;
-
+bool Pcp_solution::solve(int depth, Pcp_instance instance)
+{
     if (is_solution())
     {
 		if (_pcp.size() < _best )
@@ -71,7 +68,8 @@ bool Pcp_solution::solve(int depth, Pcp_instance instance){
 		if (is_bloc_possible(bloc))
 		{
 			push(bloc);
-			solve(depth - 1, instance);
+			if (solve(depth - 1, instance))
+				return (true);
 			pop();
 		}
     }
@@ -79,8 +77,8 @@ bool Pcp_solution::solve(int depth, Pcp_instance instance){
 }
 
 std::ostream& operator<< (std::ostream& out,  Pcp_solution& v){
-	out << "[ "; for (auto x: v._pcp) out << x << ' '; out << ']';
-	//out << "[ "; for (auto x: v._best_pcp) out << x << ' '; out << ']';
+	//out << "[ "; for (auto x: v._pcp) out << x << ' '; out << ']';
+	out << "[ "; for (auto x: v._best_pcp) out << x << ' '; out << ']';
 	return out;
 }
 

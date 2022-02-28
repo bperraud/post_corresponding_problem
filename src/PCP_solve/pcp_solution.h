@@ -14,7 +14,6 @@ class Pcp_solution {
 	size_t	_best;
 
 public:
-	//Pcp_solution() noexcept = default;
 	Pcp_solution (int best = 1000) {_best = best; }
 	inline size_t get_length(){ return _best; }
 	bool is_bloc_possible(Pcp_bloc &bloc);

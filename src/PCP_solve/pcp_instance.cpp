@@ -23,6 +23,28 @@ Pcp_instance::Pcp_instance(unsigned int size, unsigned int width) : _size(size)
 	}
 }
 
+bool Pcp_instance::has_symetrical()
+{
+	for (int i = 0; i < _size ; i++)
+	{
+		for (int j = 0; j < _size ; j++)
+		{
+			std::string top;
+			std::string bot;
+			if (i != j)
+			{
+				top += _instance[i].get_top();
+				top += _instance[j].get_top();;
+				bot += _instance[i].get_bottom();;
+				bot += _instance[j].get_bottom();
+				if (top == bot)
+					return (true);
+			}
+		}
+	}
+	return (false);
+}
+
 bool Pcp_instance::prefix_filter()
 {
 	for (int i = 0; i < _size ; i++)

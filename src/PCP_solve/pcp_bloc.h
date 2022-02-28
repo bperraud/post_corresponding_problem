@@ -28,7 +28,7 @@ public:
 	inline int top_less_bottom_len() {return _top.size() - _bottom.size();}
 	inline int top_less_bottom_ones() {return std::count(_top.begin(), _top.end(), '1') - std::count(_bottom.begin(), _bottom.end(), '1');}
 	void generate_blocs(int);
-
+	// Output
 	friend std::ostream& operator<< (std::ostream&, Pcp_bloc&);
 };
 
