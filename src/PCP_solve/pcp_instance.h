@@ -3,7 +3,6 @@
 
 #include "pcp_bloc.h"
 
-
 class Pcp_instance {
 	unsigned int _size;						// nombre de bloc
 	unsigned int _width; 					// longueur de la plus grande string
@@ -18,6 +17,7 @@ public:
 	bool prefix_filter();
 	bool length_balance_filter();
 	bool element_balance_filter();
+	bool has_symetrical();
     //std::string stringify();
     //void write_instance();
     //bool is_in_db();

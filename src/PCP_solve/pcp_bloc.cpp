@@ -36,8 +36,8 @@ void Pcp_bloc::generate_blocs(int max_len){
     }
     _top = top;
     _bottom = bot;
-
 	if (_top == _bottom)
-		_top[0] = (_top[0] == '0' ? '1' : '0' ) ;
+		_top[0] = (_top[0] == '0' ? '1' : '0' );
+	_width = MAX(_top.length(), _bottom.length());
 }
 
