@@ -2,6 +2,7 @@ body {
   background-color: #333;
   margin: 0%;
   padding: 0%;
+  font-family: Arial;
 }
 
 .App {
@@ -89,4 +90,11 @@ p {
 ul {
   display: flex;
   flex-wrap: wrap;
+}
+
+
+#about {
+  margin: 5%;
+  padding-bottom: 10%;
+  color:rgb(75, 73, 73);
 }

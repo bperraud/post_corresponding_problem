@@ -7,7 +7,7 @@ import Navbar from './components/Navbar'
 import ContactForm from './components/ContactForm'
 import GameBoard from './components/GameBoard';
 import Solution from './components/Solution';
-
+import About from './components/About';
 
 class App extends React.Component {
   
@@ -18,8 +18,7 @@ class App extends React.Component {
           <Navbar/>
           <GameBoard/>
         </div>
-        <div id='game'>
-        </div>
+        <About></About>
       </div>
     );
   }
