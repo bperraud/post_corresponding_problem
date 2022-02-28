@@ -10,6 +10,7 @@ void generate_instance(int instance_size, int instance_width, int depth, int har
 	int i = 0;
 	while (i++ < ITERATION)
 	{
+	    std::cout << i << std::endl;
 		Pcp_instance inst = Pcp_instance(instance_size, instance_width);										// random gen
 		if (!(inst.length_balance_filter() || inst.element_balance_filter() || inst.prefix_filter()) && (hard_mode ? !inst.has_symetrical() : 1))		    // if instance can have solution
 		{
