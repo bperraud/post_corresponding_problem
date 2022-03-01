@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/static/css/main.654fd6e9.css",
-    "main.js": "/static/js/main.7b46fb61.js",
+    "main.js": "/static/js/main.058049b0.js",
     "static/js/731.032fe242.chunk.js": "/static/js/731.032fe242.chunk.js",
     "static/media/logo.png": "/static/media/logo.83c3691f2a9494ef6033.png",
     "static/media/Emil_Leon_Post.jpg": "/static/media/Emil_Leon_Post.02c3989b06465ed92e94.jpg",
     "index.html": "/index.html",
     "main.654fd6e9.css.map": "/static/css/main.654fd6e9.css.map",
-    "main.7b46fb61.js.map": "/static/js/main.7b46fb61.js.map",
+    "main.058049b0.js.map": "/static/js/main.058049b0.js.map",
     "731.032fe242.chunk.js.map": "/static/js/731.032fe242.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.654fd6e9.css",
-    "static/js/main.7b46fb61.js"
+    "static/js/main.058049b0.js"
   ]
 }
