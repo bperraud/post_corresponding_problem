@@ -22,7 +22,7 @@ class GameBoard extends React.Component{
 
     getfromback = () =>{
         this.setState({dataInstance : ""})
-        axios.get('http://pcp-api.digitelstudios.lu:3001/api/get')
+        axios.get('https://pcp-api.digitelstudios.lu/api/get')
         .then((response)=>
         this.setState({dataInstance : response.data}))      
     }
