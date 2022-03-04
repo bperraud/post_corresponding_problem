@@ -15,7 +15,7 @@ void generate_instance(int instance_size, int instance_width, int depth, int har
 		if (!(inst.length_balance_filter() || inst.element_balance_filter() || inst.prefix_filter()) && (hard_mode ? !inst.has_symetrical() : 1))		    // if instance can have solution
 		{
 			Pcp_solution pcp = Pcp_solution();
-			if (pcp.solve(depth, inst) && pcp.get_length() > depth * DIV )			// filtre
+			if (pcp.iterative_solve(inst) && pcp.get_length() > depth * DIV )			// filtre
 			{
 				std::cout << "instance : " <<  inst << std::endl;
 				std::cout << "solution : " << pcp << std::endl;
@@ -47,7 +47,7 @@ int main(void)
 	// LEVEL 2
 	//generate_instance(3, 4, )
 	// LEVEL 3
-	generate_instance(4, 4, 20, 1);
+	generate_instance(4, 4, 15, 1);
 	// LEVEL 4
 	//generate_instance(4, 3, 5);
 	// LEVEL 5

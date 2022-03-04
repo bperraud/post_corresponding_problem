@@ -22,6 +22,9 @@ public:
 	void pop();
 	bool solve(int, Pcp_instance);
 
+    bool iterative_solve(Pcp_instance);
+
+
     //std::string stringify();
     //void write_instance();
     //bool is_in_db();
