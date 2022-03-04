@@ -32,7 +32,8 @@ async function get_random_from_db(client) {
 
     }
     catch{
-        console.log("fuck this shit")
+        connection.connect()
+        get_random_from_db(client)
     }
 }
 
