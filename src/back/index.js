@@ -9,7 +9,8 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({extended : true}))
 
 
-const connection = mysql.createConnection({
+const connection = mysql.createPool({
+    connectionLimit : 10,
     password: '86Ex$y3s',
     user: 'pcp-user',
     host: 'pcp.digitelstudios.lu',
@@ -32,12 +33,10 @@ async function get_random_from_db(client) {
 
     }
     catch{
-        connection.connect()
-        get_random_from_db(client)
+        console.log("Oof")
     }
 }
 
-connection.connect()
 app.listen(3001, () => {
     console.log("running on port 3001");
 })
