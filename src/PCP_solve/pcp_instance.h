@@ -3,6 +3,10 @@
 
 #include "pcp_bloc.h"
 
+#include <cppconn/driver.h>
+#include <cppconn/exception.h>
+#include <cppconn/statement.h>
+
 class Pcp_instance {
 	unsigned int _size;						// nombre de bloc
 	unsigned int _width; 					// longueur de la plus grande string
@@ -18,9 +22,11 @@ public:
 	bool length_balance_filter();
 	bool element_balance_filter();
 	bool has_symetrical();
-    //std::string stringify();
-    //void write_instance();
-    //bool is_in_db();
+    void strip_duplicate();
+    bool has_common_in_db();
+    std::string stringify();
+    void write_instance(int, int);
+    bool is_in_db();
 
 	friend std::ostream& operator<< (std::ostream&, Pcp_instance&);
 };

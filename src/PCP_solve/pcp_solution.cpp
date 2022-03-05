@@ -53,12 +53,13 @@ bool Pcp_solution::solve(int depth, Pcp_instance instance)
 {
     if (is_solution())
     {
+        /*
 		if (_pcp.size() < _best )
 		{
 			_best_pcp = _pcp;
 			_best = _pcp.size();
-		}
-        std::cout << "SOLUTION SIZE = " << _pcp.size() << std::endl;
+		}*/
+        //std::cout << "SOLUTION SIZE = " << _pcp.size() << std::endl;
         //std::cout << _pcp << std::endl;
         return (true);
     }
@@ -78,13 +79,13 @@ bool Pcp_solution::solve(int depth, Pcp_instance instance)
 }
 
 bool Pcp_solution::iterative_solve(Pcp_instance instance) {
-    int it_depth = 5;
+    int it_depth = 4;
     bool res;
     do{
-        std::cout << it_depth << std::endl;
+        //std::cout << it_depth << std::endl;
         res = solve(it_depth, instance);
-        it_depth += 5;
-    } while (!res && it_depth <= 15);
+        it_depth += 3;
+    } while (!res && it_depth <= 16);
 
     if (res){
         //write in db
@@ -101,86 +102,8 @@ std::ostream& operator<< (std::ostream& out,  Pcp_solution& v){
 	return out;
 }
 
-/*
-std::string Pcp_solution::stringify() {
-    std::string res;
-    Pcp_bloc bloc;
-    for (int i = 0; i < _pcp.size(); i++){
-        Pcp_bloc bloc = _pcp[i];
-        res += bloc.get_top() + "," + bloc.get_bottom() + ",";
-    }
-    if (res.size() > 0) res.pop_back(); //removes last ','
-    return res;
-}
-
-void Pcp_solution::write_instance() {
-    try {
-        sql::Driver *driver;
-        sql::Connection *con;
-        sql::Statement *stmt;
-
-        // Create a connection
-        driver = get_driver_instance();
-        con = driver->connect("pcp.digitelstudios.lu:3306", "pcp-user", "86Ex$y3s");
-        con->setSchema("pcp-db");
-
-        stmt = con->createStatement();
-        stmt->execute("INSERT INTO instances(pairs, sol_len) VALUES ('" + stringify() + "', '" + std::to_string(_pcp.size())+ "')");
-
-        delete stmt;
-        delete con;
-    }
-    catch (sql::SQLException &e) {
-        std::cout << "# ERR: SQLException in " << __FILE__;
-        std::cout << "(" << __FUNCTION__ << ") on line "
-                  << __LINE__ << std::endl;
-        std::cout << "# ERR: " << e.what();
-        std::cout << " (MySQL error code: " << e.getErrorCode();
-        std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
-    }
-}
 
 
-bool Pcp_solution::is_in_db() {
-    //std::cout << "here then 1";
-    try {
-        //std::cout << "here then";
-        sql::Driver *driver;
-        sql::Connection *con;
-        sql::Statement *stmt;
-        sql::ResultSet *res;
 
-        bool is_in_db = false;
-
-        // Create a connection
-        driver = get_driver_instance();
-        //std::cout << "here";
-        con = driver->connect("pcp.digitelstudios.lu:3306", "pcp-user", "86Ex$y3s");
-        con->setSchema("pcp-db");
-        //std::cout << "there";
-        stmt = con->createStatement();
-        res = stmt->executeQuery("Select * from instances where pairs='" + stringify() + "'");
-
-        is_in_db = res->rowsCount() == 1;
-
-        delete res;
-        delete stmt;
-        delete con;
-        return is_in_db;
-    }
-    catch (sql::SQLException &e) {
-        std::cout << "# ERR: SQLException in " << __FILE__;
-        std::cout << "(" << __FUNCTION__ << ") on line "
-                  << __LINE__ << std::endl;
-        std::cout << "# ERR: " << e.what();
-        std::cout << " (MySQL error code: " << e.getErrorCode();
-        std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
-    }
-    catch (std::bad_alloc &e){
-        std::cout << "error in the block" << std::endl;
-    }
-    return false;
-}
- */
 
 

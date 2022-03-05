@@ -16,6 +16,7 @@ class Pcp_solution {
 public:
 	Pcp_solution (int best = 1000) {_best = best; }
 	inline size_t get_length(){ return _best; }
+    inline int get_sol_size(){return _pcp.size();}
 	bool is_bloc_possible(Pcp_bloc &bloc);
 	bool is_solution();
 	void push(Pcp_bloc);
@@ -24,10 +25,6 @@ public:
 
     bool iterative_solve(Pcp_instance);
 
-
-    //std::string stringify();
-    //void write_instance();
-    //bool is_in_db();
 	friend std::ostream& operator<< (std::ostream&, Pcp_solution&);
 };
 
