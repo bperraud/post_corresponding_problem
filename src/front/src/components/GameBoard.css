@@ -54,3 +54,40 @@
   padding: 10px 15px;
   cursor: pointer;
 }
+
+.startButton {
+  margin-top: 5px;
+  margin: 5px;
+  background-color: rgb(23, 173, 3);
+  color: rgb(0, 0, 0);
+  border: 2px solid #adadad;
+  transition-duration: 0.4s;
+  border-radius: 20px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.startButton:hover {
+  background-color: #a00101;
+  color: rgb(255, 255, 255);
+  border: 2px solid #242323;
+  transition-duration: 0.4s;
+}
+
+.stopButton {
+  margin-top: 5px;
+  margin: 5px;
+  background-color: #a00101;
+  color: rgb(255, 255, 255);
+  border: 2px solid #242323;
+  border-radius: 20px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.stopButton:hover {
+  background-color: rgb(23, 173, 3);
+  color: rgb(0, 0, 0);
+  border: 2px solid #adadad;
+  transition-duration: 0.4s;
+}
