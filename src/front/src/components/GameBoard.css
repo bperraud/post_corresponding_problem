@@ -23,3 +23,34 @@
   color: black;
   cursor: pointer;
 }
+
+.levelButtonDisabled {
+  margin-top: 5px;
+  margin: 5px;
+  background-color: white;
+  color: rgb(90, 90, 90);
+  border: 2px solid #adadad;
+  transition-duration: 0.4s;
+  border-radius: 20px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.levelButtonDisabled:hover {
+  background-color: #b4e0eb;
+  color: rgb(0, 0, 0);
+  border: 2px solid #adadad;
+  transition-duration: 0.4s;
+}
+
+.levelButtonEnabled {
+  margin-top: 5px;
+  margin: 5px;
+  background-color: rgb(143, 143, 143);
+  color: rgb(59, 52, 52);
+  border: 2px solid #3d3d3d;
+  transition-duration: 0.4s;
+  border-radius: 20px;
+  padding: 10px 15px;
+  cursor: pointer;
+}

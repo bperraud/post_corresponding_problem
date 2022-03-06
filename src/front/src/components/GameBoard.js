@@ -13,6 +13,7 @@ class GameBoard extends React.Component{
         this.state = {
             helpButtonPopUp: false,
             dataInstance : "",
+            selectedLevel : [false,false,false,false]
         };
     }
 
@@ -27,6 +28,12 @@ class GameBoard extends React.Component{
         this.setState({dataInstance : response.data}))      
     }
 
+    handelLevelButton = (index) =>{
+        let tmpState = [false, false, false,false]
+        tmpState[index] = true
+        this.setState({selectedLevel : tmpState});
+    }
+
     render(){
         return(
             <main>
@@ -34,6 +41,13 @@ class GameBoard extends React.Component{
                     <button className='gameButtons' onClick={this.getfromback}>Load Instance</button>
                     <button className='gameButtons'>Start playing</button>
                     <button className='gameButtons' onClick={this.setTrigger}>Help ?</button>
+                </div>
+                    <button className={!this.state.selectedLevel[0] ?'levelButtonDisabled' : 'levelButtonEnabled'} onClick={() => this.handelLevelButton(0)}>Beginner</button>
+                    <button className={!this.state.selectedLevel[1] ?'levelButtonDisabled' : 'levelButtonEnabled'} onClick={() => this.handelLevelButton(1)}>Intermediate</button>
+                    <button className={!this.state.selectedLevel[2] ?'levelButtonDisabled' : 'levelButtonEnabled'} onClick={() => this.handelLevelButton(2)}>Hard</button>
+                    <button className={!this.state.selectedLevel[3] ?'levelButtonDisabled' : 'levelButtonEnabled'} onClick={() => this.handelLevelButton(3)}>Pro</button>
+                <div>
+
                 </div>
                     <div>
                         instance : {this.state.dataInstance}
