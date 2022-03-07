@@ -1,0 +1,103 @@
+[]
+--INTRODUCTION--
+[Slide 1, écrans]
+Nous avons affaire tous les jours à l'informatique, dont on dit qu'elle résout beaucoup de [Slide 2, rubiks cube] problèmes.
+Dans cette vidéo nous allons nous pencher sur un problème informatique bien particulier: le problème de correspondance de [Slide 3, colis] Post, ou encore PCP.
+Et non, ça n'a rien à voir avec la Poste et l'envoi de lettres, quoique le nom du problème pourrait nous laisser croire.
+[Slide 4, Post]
+PCP est un problème inventé par Emil Leon Post, un scientifique américain à la vie compliquée, et qui a travaillé dans un domaine qui semble lui aussi compliqué, la logique et la théorie du calcul.
+De quel problème s'agit-il ?
+
+[]
+--PCP-- 
+
+[Slide 6, alphabet]
+Nous parlerons dans ce contexte d'alphabets. Bien que la suite "A,B,C,D,E,F,..." est UN alphabet ce n'est pas le seul.
+En effet, il existe une infinité d'alphabets, définis en informatique comme des ensembles de symboles, par exemple "4,3,7,2", "@,*,&,$", ou "A,B,C,D,..." . 
+
+[Slide 7, exemple intro]
+Considérons un alphabet de taille finie.
+Par simplicité nous prendrons l'alphabet "01" à 2 symboles.
+
+
+[Slide 7', Afficher listes]
+On se donne ensuite deux listes de même taille contenant des mots composés des symboles de notre alphabet.
+Prenons par exemple une liste A contenant les mots ["0","01","110"] et une liste B contenant les mots ["100", "00", "11"].
+
+[Slide 8, Indice 1]
+Enfin, nous avons un indice qui permet de retrouver un mot d'une liste sur base de sa position, par exemple l'indice 1 pour A nous donne "0" et pour la liste B "100"
+(Tu peux aussi énoncer, que pour l'indice 2, c'est 01 et 00 et pour l'indice 3 110 et 11. Fait une courte pause entre chaque phrase, si nécessaire je couperai au montage)
+
+[Slide 11, outils]
+Ceci sont les outils avec lesquels nous travaillerons pour résoudre le problème suivant:
+
+[Slide 12, vide]
+Est-ce que je peux trouver une suite d'indices, telle qu'en prenant les mots associés aux indices pour chaque liste, on forme deux mots identiques?
+
+[Slide 13, exemple]
+Reprenons l'exemple précédent et la suite d'indices "3231".
+Est-ce que le mot formé par les mots de la liste A associés à ces indices est le même que pour les mots de B?
+Construisons la solution ensemble étape par étape.
+
+[Slide 14, ex premier indice]
+Nous avons comme premier indice, l'indice 3, nous prenons donc le troisième mot de chaque liste, en l'occurance "110" pour A et "11" pour B, et les mettons dans notre solution.
+Nous aurons en haut la solution construite par A et en dessous celle construite par B.
+
+[Slide 15, 2nd indice]
+Ensuite nous prenons pour l'indice 2 "01" pour A et "00" pour B, et les rajoutons à la solution respective.
+[Slide 16, 3ième indice]
+Alors, nous répétons la même chose que pour le premier indice et 
+[Slide 17, dernier indice]
+enfin nous avons "1" comme dernier indice, nous terminons donc notre solution avec "0" pour A et "100" pour B.
+
+[Slide 18, solution]
+On peut enfin voir qu'en effet nous avons formé avec les mots tirés de A et de B exactement le même mot en utilisant la suite d'indices "3231".
+Donc, pour répondre à la fameuse question qu'on s'était posée, oui, on peut trouver une suite d'indices formant le même mot pour les deux listes de cette instance.
+
+[Slide 19, solution sans couleur]
+Notons que PCP se focalise non pas sur trouver une telle suite d'indices, mais sur la possibilité de pouvoir la former, un simple oui ou non suffit comme réponse, c'est un problème de décision.
+
+[Slide 20, pensée]
+Un problème de décision est un problème pour lequel on veut simplement répondre oui ou non à la question.
+
+[]
+--INDECIDABILITE--
+
+[Slide 21, bonhomme]
+PCP est un problème indécidable.
+Qu'est-ce que ça veut dire?
+Le mot indécidable signifie qu'on ne peut pas prendre de décision, on ne peut pas répondre oui ou non.
+Pourtant nous venons juste de voir que c'est tout à fait possible.
+
+[Slide 22, programme]
+En effet, on peut rapidement trouver la réponse à de nombreuses instances du PCP.
+Mais il n'existe pas de méthode automatique, c'est-à-dire de programme, ou d'algorithme, permettant de répondre correctement à n'importe quelle instance.
+En informatique théorique, on définit donc un problème comme indécidable, s'il n'existe pas d'algorithme qui donne la bonne réponse, quelle que soit l'instance.
+
+[Slide 23, exemple dur]
+Gardons notre alphabet et considérons maintenant les deux listes A et B suivantes.
+Cet exemple semble bien simple à première vue, mais essayez de me dire si oui ou non il existe une solution? (faites pause le temps de réfléchir à ce sujet)
+
+Avez-vous trouvé ou bien êtes-vous indécis?
+
+[Slide 24, isntance positive]
+La réponse à cette instance est positive: il existe bien une solution, mais elle est particulièrement longue !
+
+[Slide 25, solution]
+Cette solution est de taille 44, elle contient autant de blocs de mots des deux listes.
+Il faut donc répondre oui à cette instance !
+
+[Slide 26, instance négative]
+Cette instance-ci est négative: il n'y a pas de solution.
+Le programme qui a pu résoudre l'instance précédente tourne à l'infini pour cette instance-ci !
+On limite donc souvent ce genre d'algorithme à une certaine taille pour la solution, afin d'éviter de réellement tourner en rond à l'infini.
+
+[Slide 27, error, no bugsplat]
+Le problème PCP semble peut-être un peu artificiel. Mais il est possible de démontrer, par exemple, que s'il existait un algorithme pour le résoudre,
+on pourrait vérifier automatiquement que les logiciels ne contiennent pas de bugs! L'informatique serait alors bien différente ! Mais c'est hélas impossible.
+
+[Slide 28, Jeu]
+Tout ça est probablement difficile à cerner juste en nous écoutant.
+C'est pour ça que nous avons programmé un petit jeu pour vous.
+Ce jeu vous confronte à différentes instances de problèmes de Post, vous laisse former des mots et vous demande de trouver une solution.
+Vous trouverez le jeu à l'adresse: https://pcp.digitelstudios.lu/
