@@ -13,11 +13,9 @@ class App extends React.Component {
   
   render(){
     return (
-      <div className="App">
-        <div className='Header'>
-          <Navbar/>
-          <GameBoard/>
-        </div>
+      <div className="App"> 
+        <Navbar/>
+        <GameBoard/>
         <About></About>
       </div>
     );
