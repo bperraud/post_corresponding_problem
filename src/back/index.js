@@ -44,25 +44,25 @@ app.listen(3001, () => {
 
 app.get("/api/get", (req, res) =>{
 
-    get_random_from_db(res);
+    get_random_from_db(res, 0);
 
 })
 
 app.get("/api/get/easy", (req, res) =>{
 
-    get_random_from_db(res, 1);
+    get_random_from_db(res, 0);
 
 })
 
 app.get("/api/get/medium", (req, res) =>{
 
-    get_random_from_db(res, 2);
+    get_random_from_db(res, 1);
 
 })
 
 app.get("/api/get/hard", (req, res) =>{
 
-    get_random_from_db(res, 3);
+    get_random_from_db(res, 2);
 
 })
 
