@@ -19,6 +19,7 @@
   background-color: rgb(177, 199, 231);
   border-radius: 10px;
   position: absolute;
+  border-width: 10px;
 }
 
 .pop-inner .closebtn {

@@ -17,6 +17,7 @@ class GameBoard extends React.Component{
             dataInstance : "",
             selectedLevel : [false,false,false,false],
             level : 0,
+            levels : ["easy", "medium", "hard"],
             maxLevel : 3
         };
     }
@@ -25,17 +26,23 @@ class GameBoard extends React.Component{
         this.setState({helpButtonPopUp : !this.state.helpButtonPopUp})        
     }
 
-    getfromback = () =>{
+    getfromback = (index) => {
         this.setState({dataInstance : ""})
-        axios.get('https://pcp-api.digitelstudios.lu/api/get')
+        axios.get('https://pcp-api.digitelstudios.lu/api/get/'+this.state.levels[index])
         .then((response)=>
         this.setState({dataInstance : response.data}))      
+    }
+
+    setLevel = () =>{
+
     }
 
     handelLevelButton = (index) =>{
         let tmpState = [false, false, false,false]
         tmpState[index] = true
         this.setState({selectedLevel : tmpState});
+        this.setState({level : index})
+        this.getfromback(index);
     }
 
     displayLevelButtons = () =>{
@@ -46,7 +53,6 @@ class GameBoard extends React.Component{
         return(
             <main>
                 <div>                
-                    <button className='gameButtons' onClick={this.getfromback}>Load Instance</button>
                     <button className='gameButtons' onClick={this.displayLevelButtons}>New Game</button>
                     <button className='gameButtons' onClick={this.setTrigger}>Help ?</button>
                 </div>
@@ -55,8 +61,7 @@ class GameBoard extends React.Component{
                     <div>
                         <button className={!this.state.selectedLevel[0] ?'levelButtonDisabled' : 'levelButtonEnabled'} onClick={() => this.handelLevelButton(0)}>Beginner</button>
                         <button className={!this.state.selectedLevel[1] ?'levelButtonDisabled' : 'levelButtonEnabled'} onClick={() => this.handelLevelButton(1)}>Intermediate</button>
-                        <button className={!this.state.selectedLevel[2] ?'levelButtonDisabled' : 'levelButtonEnabled'} onClick={() => this.handelLevelButton(2)}>Hard</button>
-                        <button className={!this.state.selectedLevel[3] ?'levelButtonDisabled' : 'levelButtonEnabled'} onClick={() => this.handelLevelButton(3)}>Pro</button>                
+                        <button className={!this.state.selectedLevel[2] ?'levelButtonDisabled' : 'levelButtonEnabled'} onClick={() => this.handelLevelButton(2)}>Hard</button>           
                     </div>
                     <div>
                         <button className={this.state.startTimer ? 'stopButton' :'startButton'} onClick={()=> this.setState({startTimer : !this.state.startTimer})}>{this.state.startTimer? 'Stop Playing' : 'Start Playing'}</button>

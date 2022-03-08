@@ -24,10 +24,11 @@ async function get_random_from_db(client, selected_level) {
 
     let res = null;
     try{
-        await connection.query('SELECT * FROM instances WHERE lvl='+selected_level+' AS solution order by RAND()', (err, rows, fields) => {
+        await connection.query("SELECT * FROM instances AS solution WHERE level = '"+selected_level+"' order by RAND()", (err, rows, fields) => {
             if (err) throw err;
             //console.log(err);
             res = rows[0].pairs
+            console.log(rows[0].level)
             console.log(res)
             client.send(res)
         })
@@ -42,27 +43,24 @@ app.listen(3001, () => {
     console.log("running on port 3001");
 })
 
-app.get("/api/get", (req, res) =>{
 
-    get_random_from_db(res);
-
-})
 
 app.get("/api/get/easy", (req, res) =>{
 
-    get_random_from_db(res, 1);
+    get_random_from_db(res, 0);
 
 })
 
 app.get("/api/get/medium", (req, res) =>{
 
-    get_random_from_db(res, 2);
+    get_random_from_db(res, 1);
 
 })
 
+
 app.get("/api/get/hard", (req, res) =>{
 
-    get_random_from_db(res, 3);
+    get_random_from_db(res, 2);
 
 })
 
