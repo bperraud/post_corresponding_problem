@@ -24,7 +24,7 @@ async function get_random_from_db(client, selected_level) {
 
     let res = null;
     try{
-        await connection.query('SELECT * FROM instances WHERE lvl='++' AS solution order by RAND()', (err, rows, fields) => {
+        await connection.query('SELECT * FROM instances WHERE lvl='+selected_level+' AS solution order by RAND()', (err, rows, fields) => {
             if (err) throw err;
             //console.log(err);
             res = rows[0].pairs
