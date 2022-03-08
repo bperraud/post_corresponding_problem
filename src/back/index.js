@@ -44,7 +44,6 @@ app.listen(3001, () => {
 })
 
 
-
 app.get("/api/get/easy", (req, res) =>{
 
     get_random_from_db(res, 0);
