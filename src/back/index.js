@@ -19,11 +19,12 @@ const connection = mysql.createPool({
 })
 
 
-async function get_random_from_db(client) {
+async function get_random_from_db(client, selected_level) {
+    // add parameter to define level, which influences on the query?
 
     let res = null;
     try{
-        await connection.query('SELECT * FROM instances AS solution order by RAND()', (err, rows, fields) => {
+        await connection.query('SELECT * FROM instances WHERE lvl='++' AS solution order by RAND()', (err, rows, fields) => {
             if (err) throw err;
             //console.log(err);
             res = rows[0].pairs
@@ -44,6 +45,24 @@ app.listen(3001, () => {
 app.get("/api/get", (req, res) =>{
 
     get_random_from_db(res);
+
+})
+
+app.get("/api/get/easy", (req, res) =>{
+
+    get_random_from_db(res, 1);
+
+})
+
+app.get("/api/get/medium", (req, res) =>{
+
+    get_random_from_db(res, 2);
+
+})
+
+app.get("/api/get/hard", (req, res) =>{
+
+    get_random_from_db(res, 3);
 
 })
 
