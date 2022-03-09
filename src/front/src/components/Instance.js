@@ -11,7 +11,9 @@ class Instance extends React.Component {
         this.state = {
             dominos : [],
             addedDominos : [],
-            won : false
+            won : false,
+            topString : "",
+            bottomString : ""
         }
     }
 
@@ -19,7 +21,6 @@ class Instance extends React.Component {
     convertStringToArray(){
         this.state.dominos = []
         const receiveddata =  this.props.data;
-        console.log("received " + receiveddata);
         const dataToString = JSON.stringify(receiveddata)
         const ConvertedData = dataToString.split(",");
         if (ConvertedData.length%2 === 0){
@@ -76,6 +77,9 @@ class Instance extends React.Component {
                 top += this.state.addedDominos[i].topText;
                 bottom += this.state.addedDominos[i].bottomText;
           }
+          this.state.topString = top;
+          this.state.bottomString = bottom;
+
           this.state.won = top === bottom;
           return top === bottom && top !== "";
       }
@@ -88,9 +92,10 @@ class Instance extends React.Component {
 
     render(){
         this.convertStringToArray();
+        
         return (
             <div>
-                <div>Instance :</div>
+                {this.isWon() && <HelpPopup setTrigger={this.setTrigger}text = "You won"/>}
                 <div id='game'>
                     <ul className="elements">
                         {this.state.dominos.map(({topText, bottomText}, index) => {
@@ -107,7 +112,7 @@ class Instance extends React.Component {
                     </ul>
                 </div>
                 <div>
-                    Solution : 
+                    ''
                 </div>
                 <div id='game'>
                 <DragDropContext onDragEnd={this.handleOnDragEnd}>
@@ -137,7 +142,16 @@ class Instance extends React.Component {
                 </DragDropContext>
                 
             </div>
-            {this.isWon() && <HelpPopup setTrigger={this.setTrigger}text = "You won"/>}
+            <br>
+            
+            </br>
+            <div className='solution'>
+                    <h3>Current Solution</h3>
+                    <p className='solutionText'>{this.state.topString}</p>
+                    <br></br>
+                    <p className='solutionText'>{this.state.bottomString}</p>
+            </div>
+            
             </div>
         )
     }

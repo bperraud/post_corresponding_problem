@@ -6,6 +6,7 @@ import HelpPopup from './HelpPopup';
 import Instance from './Instance';
 import Solution from './Solution';
 import Timer from './Timer'
+import './Solution.css'
 
 class GameBoard extends React.Component{
     constructor(props){
@@ -15,10 +16,10 @@ class GameBoard extends React.Component{
             startTimer: false,
             helpButtonPopUp: false,
             dataInstance : "",
-            selectedLevel : [false,false,false,false],
+            selectedLevel : [true,false,false,false],
             level : 0,
             levels : ["easy", "medium", "hard"],
-            maxLevel : 3
+            maxLevel : 3,
         };
     }
 
@@ -27,10 +28,14 @@ class GameBoard extends React.Component{
     }
 
     getfromback = (index) => {
-        this.setState({dataInstance : ""})
-        axios.get('https://pcp-api.digitelstudios.lu/api/get/'+this.state.levels[index])
-        .then((response)=>
-        this.setState({dataInstance : response.data}))      
+        if (!this.state.startTimer){
+            this.setState({dataInstance : ""})
+            axios.get('https://pcp-api.digitelstudios.lu/api/get/'+this.state.levels[index])
+            .then((response)=>
+            this.setState({dataInstance : response.data}))   
+        }else{
+            this.setState({dataInstance : ""})
+        } 
     }
 
     setLevel = () =>{
@@ -42,11 +47,22 @@ class GameBoard extends React.Component{
         tmpState[index] = true
         this.setState({selectedLevel : tmpState});
         this.setState({level : index})
-        this.getfromback(index);
+        
     }
 
     displayLevelButtons = () =>{
         this.setState({start : true})
+    }
+
+    startGame = () =>{
+        if (!this.state.startTimer){
+            this.getfromback(this.state.level);
+        }else{
+            this.setState({dataInstance : ""})            
+        }
+        this.setState({startTimer : !this.state.startTimer})
+        
+
     }
 
     render(){
@@ -64,7 +80,7 @@ class GameBoard extends React.Component{
                         <button className={!this.state.selectedLevel[2] ?'levelButtonDisabled' : 'levelButtonEnabled'} onClick={() => this.handelLevelButton(2)}>Hard</button>           
                     </div>
                     <div>
-                        <button className={this.state.startTimer ? 'stopButton' :'startButton'} onClick={()=> this.setState({startTimer : !this.state.startTimer})}>{this.state.startTimer? 'Stop Playing' : 'Start Playing'}</button>
+                        <button className={this.state.startTimer ? 'stopButton' :'startButton'} onClick={this.startGame}>{this.state.startTimer? 'Stop Playing' : 'Start Playing'}</button>
                     </div>
                         { this.state.startTimer &&
                         <Timer></Timer>
@@ -72,12 +88,15 @@ class GameBoard extends React.Component{
                 </div>
                 }   
                     <div>
-                        instance : {this.state.dataInstance}
+                        { this.state.startTimer &&
                         <Instance data={this.state.dataInstance}/>
+                        }
+                        
                         {this.state.helpButtonPopUp && 
                         <HelpPopup setTrigger={this.setTrigger} text={"text test"}/>}
+                            
                         <div className='rectangle'>
-                    </div>                                     
+                </div>                                     
                 </div>
             </main>
             

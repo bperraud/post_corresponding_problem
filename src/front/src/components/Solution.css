@@ -1,0 +1,13 @@
+.solution {
+  width: 300px;
+  height: 80px;
+  background: rgb(252, 221, 221);
+  border: 2px solid #b4ebb4;
+  display: inline-block;
+  border-radius: 20px;
+}
+.solutionText {
+  font: bold;
+  font-size: medium;
+  color: brown;
+}
