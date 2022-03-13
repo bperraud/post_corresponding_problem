@@ -16,6 +16,7 @@ class Instance extends React.Component {
             topString : "",
             bottomString : ""
         }
+        //this.convertStringToArray();
     }
 
 
@@ -43,7 +44,6 @@ class Instance extends React.Component {
                 const temp = [...this.state.addedDominos]
                 temp.push(obj);
                 this.setState({ addedDominos : temp})
-                
                 break;
             default:
                 return;
@@ -81,11 +81,8 @@ class Instance extends React.Component {
           }
           this.state.topString = top;
           this.state.bottomString = bottom;
-
           this.state.won = top === bottom;
           return top === bottom && top !== "";
-          return true;
-
       }
 
     setTrigger = () => {
@@ -114,10 +111,8 @@ class Instance extends React.Component {
                     }
                     </ul>
                 </div>
-                <div>
-                {this.isWon() && <HelpPopup setTrigger={this.setTrigger} text={""}/>}
-                </div>
                 <div id='game'>
+                
                 <DragDropContext onDragEnd={this.handleOnDragEnd}>
                     <Droppable droppableId="elements" direction='horizontal'>
                     {(provided) => (
@@ -140,21 +135,22 @@ class Instance extends React.Component {
                         {provided.placeholder}
                         </ul>
                     )}
-                    
                     </Droppable>
                 </DragDropContext>
                 
             </div>
-            <br>
             
-            </br>
+            {this.isWon() && <HelpPopup setTrigger={this.setTrigger} text={""}/>}
+            
             <div className='solution'>
                     <h3>Current Solution</h3>
                     <p className='solutionText'>{this.state.topString}</p>
                     <br></br>
                     <p className='solutionText'>{this.state.bottomString}</p>
             </div>
-            
+            <div>
+                
+            </div>
             </div>
         )
     }

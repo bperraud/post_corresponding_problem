@@ -12,15 +12,9 @@ class HelpPopup extends React.Component{
             <div className='popup'>
                 <div className='pop-inner'>
                     <text className='instructions'>
-                        Display some instructions to play the game..
-                        display some instructions to play the game..
-                        display some instructions to play the game..
-                        display some instructions to play the game..
-                        display some instructions to play the game..
-                        display some instructions to play the game..
-                        display some instructions to play the game..
-                        <VictoryMessage></VictoryMessage>
                         {this.props.text}
+                        <VictoryMessage></VictoryMessage>
+                        
                     </text>
                     <button className='closebtn' onClick={() => this.props.setTrigger()}> x </button>  
                 </div>
