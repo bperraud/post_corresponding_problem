@@ -3,6 +3,7 @@ import Domino from './Domino';
 import HelpPopup from './HelpPopup'
 import { v4 as uuidv4 } from 'uuid';
 import {DragDropContext, Droppable, Draggable} from 'react-beautiful-dnd'
+import VictoryMessage from './VictoryMessage';
 
 class Instance extends React.Component {
 
@@ -42,6 +43,7 @@ class Instance extends React.Component {
                 const temp = [...this.state.addedDominos]
                 temp.push(obj);
                 this.setState({ addedDominos : temp})
+                
                 break;
             default:
                 return;
@@ -82,20 +84,21 @@ class Instance extends React.Component {
 
           this.state.won = top === bottom;
           return top === bottom && top !== "";
+          return true;
+
       }
 
     setTrigger = () => {
         this.setState({won : false})
         this.setState({addedDominos : []})
+        this.setState({dominos : []})
     }
 
 
     render(){
         this.convertStringToArray();
-        
         return (
             <div>
-                {this.isWon() && <HelpPopup setTrigger={this.setTrigger}text = "You won"/>}
                 <div id='game'>
                     <ul className="elements">
                         {this.state.dominos.map(({topText, bottomText}, index) => {
@@ -112,7 +115,7 @@ class Instance extends React.Component {
                     </ul>
                 </div>
                 <div>
-                    ''
+                {this.isWon() && <HelpPopup setTrigger={this.setTrigger} text={""}/>}
                 </div>
                 <div id='game'>
                 <DragDropContext onDragEnd={this.handleOnDragEnd}>

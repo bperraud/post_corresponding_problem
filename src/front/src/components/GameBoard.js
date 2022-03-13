@@ -7,6 +7,7 @@ import Instance from './Instance';
 import Solution from './Solution';
 import Timer from './Timer'
 import './Solution.css'
+import VictoryMessage from './VictoryMessage';
 
 class GameBoard extends React.Component{
     constructor(props){
@@ -89,12 +90,10 @@ class GameBoard extends React.Component{
                 }   
                     <div>
                         { this.state.startTimer &&
-                        <Instance data={this.state.dataInstance}/>
+                        <Instance data={this.state.dataInstance} play={this.state.startTimer}/>
                         }
-                        
                         {this.state.helpButtonPopUp && 
                         <HelpPopup setTrigger={this.setTrigger} text={"text test"}/>}
-                            
                         <div className='rectangle'>
                 </div>                                     
                 </div>

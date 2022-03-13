@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import VictoryMessage from './VictoryMessage';
 import './Popup.css'
 
 
@@ -18,6 +19,7 @@ class HelpPopup extends React.Component{
                         display some instructions to play the game..
                         display some instructions to play the game..
                         display some instructions to play the game..
+                        <VictoryMessage></VictoryMessage>
                         {this.props.text}
                     </text>
                     <button className='closebtn' onClick={() => this.props.setTrigger()}> x </button>  
