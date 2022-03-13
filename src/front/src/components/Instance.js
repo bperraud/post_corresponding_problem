@@ -35,9 +35,9 @@ class Instance extends React.Component {
   
     addToSolution = (e, _top, _bottom) =>{
         switch(e.detail){
-            case 1:
-                break;
             case 2:
+                break;
+            case 1:
                 const obj = {id : uuidv4(), topText: _top, bottomText :_bottom}
                 const temp = [...this.state.addedDominos]
                 temp.push(obj);
@@ -58,9 +58,9 @@ class Instance extends React.Component {
 
     handleClick = (e, index) => {
         switch (e.detail) {
-          case 1:
-            break;
           case 2:
+            break;
+          case 1:
             const items = Array.from(this.state.addedDominos);
             items.splice(index,1);
             this.setState({addedDominos : items})
