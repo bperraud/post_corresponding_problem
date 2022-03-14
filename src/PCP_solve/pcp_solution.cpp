@@ -53,14 +53,6 @@ bool Pcp_solution::solve(int depth, Pcp_instance instance)
 {
     if (is_solution())
     {
-        /*
-		if (_pcp.size() < _best )
-		{
-			_best_pcp = _pcp;
-			_best = _pcp.size();
-		}*/
-        //std::cout << "SOLUTION SIZE = " << _pcp.size() << std::endl;
-        //std::cout << _pcp << std::endl;
         return (true);
     }
 	else if (depth == 0)
@@ -79,18 +71,13 @@ bool Pcp_solution::solve(int depth, Pcp_instance instance)
 }
 
 bool Pcp_solution::iterative_solve(Pcp_instance instance) {
-    int it_depth = 4;
+    int it_depth[3] = {4, 7, 15};
+    int idx = 0;
     bool res;
     do{
-        //std::cout << it_depth << std::endl;
-        res = solve(it_depth, instance);
-        it_depth += 3;
-    } while (!res && it_depth <= 16);
-
-    if (res){
-        //write in db
-    }
-
+        res = solve(it_depth[idx], instance);
+        idx++;
+    } while (!res && idx <= 2);
 
     return res;
 
