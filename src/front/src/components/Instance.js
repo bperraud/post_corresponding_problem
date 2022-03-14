@@ -150,7 +150,7 @@ class Instance extends React.Component {
             
             {this.isWon() && <HelpPopup setTrigger={this.setTrigger} text={""} specialText={"CONGRATULATIONS ! YOU WON"}/>}
             
-            <div className={this.isWon()? 'solutionWon' : 'solution'}>
+            <div className={this.isWon()? 'solutionWon' : 'solutionn'}>
                     <h3>Current Solution</h3>
                     <p className={this.isWon()? 'solutionTextWon' : 'solutionText'}>{this.state.topString}</p>
                     <br></br>

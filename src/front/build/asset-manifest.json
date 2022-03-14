@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.118e10f4.css",
-    "main.js": "/static/js/main.8af95062.js",
+    "main.css": "/static/css/main.8a50d9a0.css",
+    "main.js": "/static/js/main.dda7f3c3.js",
     "static/js/787.cda612ba.chunk.js": "/static/js/787.cda612ba.chunk.js",
     "static/media/ulb-logo.png": "/static/media/ulb-logo.587a0eec1b2a7ca7c5e4.png",
     "static/media/Emil_Leon_Post.jpg": "/static/media/Emil_Leon_Post.02c3989b06465ed92e94.jpg",
     "index.html": "/index.html",
-    "main.118e10f4.css.map": "/static/css/main.118e10f4.css.map",
-    "main.8af95062.js.map": "/static/js/main.8af95062.js.map",
+    "main.8a50d9a0.css.map": "/static/css/main.8a50d9a0.css.map",
+    "main.dda7f3c3.js.map": "/static/js/main.dda7f3c3.js.map",
     "787.cda612ba.chunk.js.map": "/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.118e10f4.css",
-    "static/js/main.8af95062.js"
+    "static/css/main.8a50d9a0.css",
+    "static/js/main.dda7f3c3.js"
   ]
 }
