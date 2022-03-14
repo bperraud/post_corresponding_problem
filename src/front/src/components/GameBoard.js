@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-import { useEffect } from 'react';
 import axios from 'axios';
 import './GameBoard.css'
 import HelpPopup from './HelpPopup';
 import Instance from './Instance';
-import Solution from './Solution';
 import Timer from './Timer'
 import './Solution.css'
-import VictoryMessage from './VictoryMessage';
 
 class GameBoard extends React.Component{
     constructor(props){
@@ -22,6 +19,17 @@ class GameBoard extends React.Component{
             levels : ["easy", "medium", "hard"],
             maxLevel : 3,
         };
+        this.helpMessage = `1) Comment lancer une partie ? \n 
+        -> choisir son niveau de difficulté : \n 
+        - débutant = solution entre 3 et 4 blocs \n 
+        - intermédiaire = solution entre 5 et 7 blocs \n 
+        - difficile = solution entre 8 et 16 blocs\n 
+        -> clic sur 'nouveau jeu' :\n 
+        - lance la partie dans la difficulté séléctionnée.\n 
+        \n 
+        2) Comment jouer ? \n 
+        - placer un bloc depuis l'instance en cliquant sur le bloc.\n 
+        - déplacer un bloc au sein de la solution en maintenant le clic.`
     }
 
     setTrigger = () =>{
@@ -93,7 +101,7 @@ class GameBoard extends React.Component{
                         <Instance data={this.state.dataInstance} play={this.state.startTimer}/>
                         }
                         {this.state.helpButtonPopUp && 
-                        <HelpPopup setTrigger={this.setTrigger} text={"text test"}/>}
+                        <HelpPopup setTrigger={this.setTrigger} text={this.helpMessage}/>}
                         <div className='rectangle'>
                 </div>                                     
                 </div>

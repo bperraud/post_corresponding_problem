@@ -14,15 +14,21 @@ class Instance extends React.Component {
             addedDominos : [],
             won : false,
             topString : "",
-            bottomString : ""
+            bottomString : "",
         }
-        //this.convertStringToArray();
     }
 
 
     convertStringToArray(){
         this.state.dominos = []
-        const receiveddata =  this.props.data;
+        const receiveddata = this.props.data;
+        /*if (this.state.won){
+             receiveddata =  "";
+        }
+        else{
+            receiveddata =  this.props.data;
+        }*/
+        
         const dataToString = JSON.stringify(receiveddata)
         const ConvertedData = dataToString.split(",");
         if (ConvertedData.length%2 === 0){
@@ -93,10 +99,11 @@ class Instance extends React.Component {
 
 
     render(){
-        this.convertStringToArray();
+        if (!this.isWon()){this.convertStringToArray();}
         return (
             <div>
                 <div id='game'>
+                    {!this.isWon() &&
                     <ul className="elements">
                         {this.state.dominos.map(({topText, bottomText}, index) => {
                             return (
@@ -110,10 +117,11 @@ class Instance extends React.Component {
                         )
                     }
                     </ul>
+                    }
                 </div>
                 <div id='game'>
                 
-                <DragDropContext onDragEnd={this.handleOnDragEnd}>
+                {!this.isWon() && <DragDropContext onDragEnd={this.handleOnDragEnd}>
                     <Droppable droppableId="elements" direction='horizontal'>
                     {(provided) => (
                         <ul className="elements" {...provided.droppableProps} ref={provided.innerRef}>
@@ -136,11 +144,11 @@ class Instance extends React.Component {
                         </ul>
                     )}
                     </Droppable>
-                </DragDropContext>
+                </DragDropContext>}
                 
             </div>
             
-            {this.isWon() && <HelpPopup setTrigger={this.setTrigger} text={""}/>}
+            {this.isWon() && <HelpPopup setTrigger={this.setTrigger} text={""} specialText={"CONGRATULATIONS ! YOU WON"}/>}
             
             <div className='solution'>
                     <h3>Current Solution</h3>

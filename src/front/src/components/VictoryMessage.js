@@ -5,7 +5,7 @@ import useTransition from 'react-transition-state';
 import HelpPopup from './HelpPopup';
 import AnimatedText from 'react-animated-text-content';
 
-function VictoryMessage() {
+function VictoryMessage(props) {
   const [state, toggle] = useTransition({ timeout: 850, preEnter: true });
   return (
     <div>
@@ -17,15 +17,15 @@ function VictoryMessage() {
                 scale: 3,
                 ease: 'ease-in-out'}}
             animationType="float"
-            interval={1}
-            duration={2}
+            interval={0.5}
+            duration={0.9}
             tag="h1"
             className="animated-paragraph"
             includeWhiteSpaces
             threshold={0.5}
             rootMargin="20%"
             >
-            CONGRATULATIONS ! YOU WON !
+            {props.specialText}
         </AnimatedText>
     </div>
   );

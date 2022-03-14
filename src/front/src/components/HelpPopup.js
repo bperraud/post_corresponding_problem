@@ -13,7 +13,7 @@ class HelpPopup extends React.Component{
                 <div className='pop-inner'>
                     <text className='instructions'>
                         {this.props.text}
-                        <VictoryMessage></VictoryMessage>
+                        <VictoryMessage specialText={this.props.specialText}></VictoryMessage>
                         
                     </text>
                     <button className='closebtn' onClick={() => this.props.setTrigger()}> x </button>  
