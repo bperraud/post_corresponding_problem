@@ -8,6 +8,16 @@
   padding: 20px;
 }
 
+.solutionWon {
+  height: 80px;
+  background: rgb(16, 126, 6);
+  border: 2px solid #b4ebb4;
+  display: inline-block;
+  border-radius: 20px;
+  block-size: fit-content;
+  padding: 20px;
+}
+
 .solution h3 {
   margin-bottom: 10px;
 }
@@ -16,5 +26,12 @@
   font: bold;
   font-size: medium;
   color: brown;
+  text-align: left;
+}
+
+.solutionTextWon {
+  font: bold;
+  font-size: medium;
+  color: rgb(48, 197, 3);
   text-align: left;
 }
