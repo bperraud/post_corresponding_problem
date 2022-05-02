@@ -13,6 +13,11 @@ bool Pcp_bloc::has_prefix()
 	return !_top.compare(0, size, _bottom, 0, size);
 }
 
+bool operator==(const Pcp_bloc& left, const Pcp_bloc& right)
+{
+	return (left._top == right._top && left._bottom == right._bottom);
+}
+
 std::ostream& operator<< (std::ostream& out,  Pcp_bloc& v){
 	out << '[' << v._top << '/' << v._bottom << ']';
 	return out;

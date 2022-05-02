@@ -53,7 +53,15 @@ bool Pcp_solution::solve(int depth, Pcp_instance instance)
 {
     if (is_solution())
     {
-        return (true);
+		/*
+		if (_pcp.size() < _best )
+		{
+			_best_pcp = _pcp;
+			_best = _pcp.size();
+		}
+		std::cout << "SOLUTION SIZE = " << _pcp.size() << std::endl;
+		 */
+		return (true);
     }
 	else if (depth == 0)
 		return (false);
@@ -61,7 +69,8 @@ bool Pcp_solution::solve(int depth, Pcp_instance instance)
     {
 		if (is_bloc_possible(bloc))
 		{
-			push(bloc);
+			if (!(_pcp.size() == 0 && bloc == Pcp_bloc("01", "0")))
+				push(bloc);
 			if (solve(depth - 1, instance))
 				return (true);
 			pop();
@@ -70,27 +79,23 @@ bool Pcp_solution::solve(int depth, Pcp_instance instance)
     return (false);
 }
 
+# define Final_Threshold 100
+# define Starting_Threshold 10
+# define Depth_increment 20
+
 bool Pcp_solution::iterative_solve(Pcp_instance instance) {
-    int it_depth[3] = {4, 7, 15};
-    int idx = 0;
+	int threshold = Starting_Threshold;
+
     bool res;
     do{
-        res = solve(it_depth[idx], instance);
-        idx++;
-    } while (!res && idx <= 2);
-
+        res = solve(threshold, instance);
+		threshold+= Depth_increment;
+    } while (!res && threshold <= Final_Threshold);
     return res;
-
 }
 
 std::ostream& operator<< (std::ostream& out,  Pcp_solution& v){
-	//out << "[ "; for (auto x: v._pcp) out << x << ' '; out << ']';
-	out << "[ "; for (auto x: v._best_pcp) out << x << ' '; out << ']';
+	out << "[ "; for (auto x: v._pcp) out << x << ' '; out << ']';
+	//out << "[ "; for (auto x: v._best_pcp) out << x << ' '; out << ']';
 	return out;
 }
-
-
-
-
-
-

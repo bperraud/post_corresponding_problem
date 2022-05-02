@@ -1,5 +1,5 @@
 main:
-	g++ -Wall -I/g++ -Wall -I/usr/include/cppconn pcp_solution.cpp pcp_bloc.cpp pcp_instance.cpp -o main main.cpp -L/usr/lib -lmysqlcppconn
+	g++ -Wall pcp_solution.cpp pcp_bloc.cpp pcp_instance.cpp main.cpp -o pcp
 
 run:
 	make main && ./main
