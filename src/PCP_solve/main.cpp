@@ -46,6 +46,7 @@ int main(void)
 
 	Pcp_instance inst160 = {"01", "0", "00", "011", "1", "101", "001", "1"};
 
+
 	Pcp_bloc bloc1 = {"01", "101"};
 	Pcp_bloc bloc2 = {"01", "01"};
 
@@ -53,7 +54,7 @@ int main(void)
 
 	//pcp.iterative_solve(inst);
 
-	pcp.solve(161, inst);
+	//pcp.solve(161, inst);
 
 	std::cout << "instance :" << inst160 << std::endl;
 	std::cout << "SOLUTION SIZE = " << pcp.get_sol_size() << std::endl;
