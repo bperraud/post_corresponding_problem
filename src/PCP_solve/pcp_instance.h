@@ -16,6 +16,9 @@ class Pcp_instance {
 	std::vector<Pcp_bloc> _reversal;		// liste des blocs
 	std::vector<Pcp_bloc> _mask_bloc;		// liste des blocs qui ne peuvent pas être au début d'une solution
 
+	bool	_top_mask;
+	bool	_bot_mask;
+
 public:
 	Pcp_instance(unsigned int , unsigned int );
 	Pcp_instance(std::initializer_list<std::string>);
@@ -33,7 +36,9 @@ public:
     bool is_in_db();
 
 	void create_reversal();
+	bool perfect_match(Pcp_bloc a, Pcp_bloc b);
 
+	void mask_bot();
 	void mask_top();
 
 

@@ -1,6 +1,7 @@
 #include "pcp_instance.h"
+#include "pcp_solution.h"
 
-Pcp_instance::Pcp_instance(std::initializer_list<std::string> blocs) : _size(blocs.size()/2), _instance(blocs.size()/2, Pcp_bloc())
+Pcp_instance::Pcp_instance(std::initializer_list<std::string> blocs) : _size(blocs.size()/2), _instance(blocs.size()/2, Pcp_bloc()), _top_mask(0), _bot_mask(0)
 {
 	auto bloc = blocs.begin();
 	for (std::size_t i = 0; i < _size; i++)
@@ -11,7 +12,7 @@ Pcp_instance::Pcp_instance(std::initializer_list<std::string> blocs) : _size(blo
 	create_reversal();
 }
 
-Pcp_instance::Pcp_instance(unsigned int size, unsigned int width) : _size(size)
+Pcp_instance::Pcp_instance(unsigned int size, unsigned int width) : _size(size), _top_mask(0), _bot_mask(0)
 {
 	for (unsigned int i = 0; i < _size; i++){
 		Pcp_bloc bloc = Pcp_bloc();
@@ -102,26 +103,107 @@ bool Pcp_instance::element_balance_filter()
 	return (true);
 }
 
-void Pcp_instance::mask_top()
+void	Pcp_instance::mask_top()
 {
 	// a) search for larger bot string
+
+	std::vector<Pcp_bloc> config_top;
+
 	for (Pcp_bloc bbot : _instance)
 	{
-		if (bbot.get_bottom() < bbot.get_top())  // bloc larger bottom
+		if (bbot.get_bottom().size() > bbot.get_top().size())  // bloc larger bottom
 		{
-			for (Pcp_bloc btop : _instance)
+			std::string config;
+			std::string copy;
+			for (int i = 0; i < bbot.bot_less_top_len() ; i++ )
 			{
-				if (!(bbot == btop))
-				{
-					;
-				}
+				config.append(1, bbot.get_bottom()[i]);
+			}
+			copy = config;
+			if (copy.append(bbot.get_top()) == bbot.get_bottom())
+			{
+				reverse(config.begin(), config.end());
+				std::cout << "config" << config << std::endl;
+				Pcp_bloc bruh = Pcp_bloc(config, "");
+				config_top.push_back(bruh);
 			}
 		}
 	}
 	// b) find fully matched string
-
+	bool	pushable;
+	pushable = 0;
+	for (Pcp_bloc confi : config_top)
+	{
+		for (Pcp_bloc bloc: _reversal)
+		{
+			if (perfect_match(confi, bloc))
+			{
+				std::cout << "bloc" << bloc << std::endl;
+				pushable = 1;
+				break;
+			}
+		}
+		if (pushable == 0)
+		{
+			std::cout << "confi" << confi << std::endl;
+			_top_mask = 1;
+		}
+	}
 }
 
+
+void	Pcp_instance::mask_bot()
+{
+	// a) search for larger bot string
+
+	std::vector<Pcp_bloc> config_bot;
+
+	for (Pcp_bloc btop : _instance)
+	{
+		if (btop.get_bottom().size() < btop.get_top().size())  // bloc larger bottom
+		{
+			std::string config;
+			std::string copy;
+			for (int i = 0; i < btop.top_less_bottom_len() ; i++ )
+			{
+				config.append(1, btop.get_top()[i]);
+			}
+			copy = config;
+			if (copy.append(btop.get_bottom()) == btop.get_top())
+			{
+				reverse(config.begin(), config.end());
+				std::cout << "config" << config << std::endl;
+				Pcp_bloc bruh = Pcp_bloc(config, "");
+				config_bot.push_back(bruh);
+			}
+		}
+	}
+	// b) find fully matched string
+	bool	pushable;
+	pushable = 0;
+	for (Pcp_bloc confi : config_bot)
+	{
+		for (Pcp_bloc bloc: _reversal)
+		{
+			if (perfect_match(confi, bloc))
+			{
+				std::cout << "bloc" << bloc << std::endl;
+				pushable = 1;
+				break;
+			}
+		}
+		if (pushable == 0)
+		{
+			std::cout << "confi" << confi << std::endl;
+			_bot_mask = 1;
+		}
+	}
+}
+
+bool	Pcp_instance::perfect_match(Pcp_bloc a, Pcp_bloc b)
+{
+	return (a.get_top() + b.get_top() == a.get_bottom() + b.get_bottom());
+}
 
 std::ostream& operator<< (std::ostream& out,  Pcp_instance& v){
 	out << "[ "; for (auto x: v._instance) out << x << ' '; out << ']';

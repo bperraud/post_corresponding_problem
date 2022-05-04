@@ -26,6 +26,7 @@ public:
 	// Utils
 	bool has_prefix();
 	inline int top_less_bottom_len() {return _top.size() - _bottom.size();}
+	inline int bot_less_top_len() {return _bottom.size() - _top.size();}
 	inline int top_less_bottom_ones() {return std::count(_top.begin(), _top.end(), '1') - std::count(_bottom.begin(), _bottom.end(), '1');}
 	void generate_blocs(int);
 	// Operator

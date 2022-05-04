@@ -4,6 +4,8 @@
 
 # define ITERATION 10000000
 
+using namespace std;
+
 void generate_instance(int instance_size, int instance_width, int depth, int hard_mode = 0)
 {
 	int i = 0;
@@ -25,17 +27,16 @@ void generate_instance(int instance_size, int instance_width, int depth, int har
 			}
 		}
 	}
-	/*
-    std::cout << easy_amount << std::endl;
-    std::cout << medium_amount << std::endl;
-    std::cout << hard_amount << std::endl;
-    */
 }
 
 
 int main(void)
 {
 	//srand(time(0));					// set random seed
+
+	clock_t start, end;
+	start = clock();
+
 	srand(1);					// set random seed
 
 	Pcp_solution pcp = Pcp_solution();
@@ -46,21 +47,30 @@ int main(void)
 
 	Pcp_instance inst160 = {"01", "0", "00", "011", "1", "101", "001", "1"};
 
+	Pcp_instance botmask = {"0", "01", "011", "00", "101", "1", "1", "001"};
 
-	Pcp_bloc bloc1 = {"01", "101"};
-	Pcp_bloc bloc2 = {"01", "01"};
+	inst160.mask_top();
 
-	std::cout << (bloc1 == bloc2) << std::endl;
+	botmask.mask_bot();
 
-	//pcp.iterative_solve(inst);
-
-	//pcp.solve(161, inst);
+	/*
+	pcp.solve(161, instance);
+	pcp.iterative_solve(inst);
 
 	std::cout << "instance :" << inst160 << std::endl;
 	std::cout << "SOLUTION SIZE = " << pcp.get_sol_size() << std::endl;
 	std::cout << "solution :" << pcp << std::endl;
+	*/
+	generate_instance(5, 6, 20, 1);
 
-	//generate_instance(5, 6, 10, 1);
+	// Recording the end clock tick.
+	end = clock();
+
+	// Calculating total time taken by the program.
+	double time_taken = double(end - start) / double(CLOCKS_PER_SEC);
+	cout << "Time taken by program is : " << fixed
+		 << time_taken << setprecision(7);
+	cout << " sec " << endl;
 
 }
 
