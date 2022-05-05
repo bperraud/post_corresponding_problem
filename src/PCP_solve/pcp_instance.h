@@ -22,9 +22,14 @@ class Pcp_instance {
 public:
 	Pcp_instance(unsigned int , unsigned int );
 	Pcp_instance(std::initializer_list<std::string>);
+
+	/* getter */
 	inline Pcp_bloc getBloc(unsigned int index) { return _instance[index];}
 	inline unsigned int getSize() { return _size;};
 	inline std::vector<Pcp_bloc> getInstance(){ return _instance; }
+	inline bool getTopmask() {return _top_mask;}
+	inline bool getBotmask() {return _bot_mask;}
+
 	bool prefix_filter();
 	bool length_balance_filter();
 	bool element_balance_filter();

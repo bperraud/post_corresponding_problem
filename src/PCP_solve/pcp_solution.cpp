@@ -2,16 +2,18 @@
 
 bool Pcp_solution::is_solution()
 {
-	// peut être opti
+	int top;
+	int bottom;
+
 	if (!_pcp.empty())
 	{
-		std::string top;
-		std::string bottom;
+		top = 0;
+		bottom = 0;
 		for (std::size_t i = 0; i < _pcp.size(); i++)
 		{
 			Pcp_bloc bloc = _pcp[i];
-			top += bloc.get_top();
-			bottom += bloc.get_bottom();
+			top += bloc.get_top().size();
+			bottom += bloc.get_bottom().size();
 		}
 		return (top == bottom);
 	}
@@ -20,20 +22,29 @@ bool Pcp_solution::is_solution()
 
 bool Pcp_solution::is_bloc_possible(Pcp_bloc &bloc)
 {
-	size_t size;
-	if (!_pcp.empty())
+	size_t	size;
+	bool	ret;
+
+	if (_pcp.empty())
 	{
-		std::string top;
-		std::string bottom;
-		for (Pcp_bloc b : _pcp)
+		 if (_top_mask && bloc.top_less_bottom_len() > 0)
+		 {
+			 //std::cout << "top mask" << std::endl;
+			 return (false);
+		 }
+		if (_bot_mask && bloc.bot_less_top_len() > 0)
 		{
-			top += b.get_top();
-			bottom += b.get_bottom();
+			//std::cout << "bot mask" << std::endl;
+			return (false);
 		}
-		top += bloc.get_top();
-		bottom += bloc.get_bottom();
-		size = MIN(top.length(), bottom.length());
-		return (!top.compare(0, size, bottom, 0, size));
+	}
+	else
+	{
+		push(bloc);
+		size = MIN(_top_string.length(), _bot_string.length());
+		ret = !_top_string.compare(0, size, _bot_string, 0, size);
+		pop();
+		return (ret);
 	}
 	return (bloc.has_prefix());
 }
@@ -41,12 +52,23 @@ bool Pcp_solution::is_bloc_possible(Pcp_bloc &bloc)
 void Pcp_solution::push(Pcp_bloc bloc)
 {
 	_pcp.push_back(bloc);
+	_top_string.append(bloc.get_top());
+	_bot_string.append(bloc.get_bottom());
 }
 
 void Pcp_solution::pop()
 {
+	Pcp_bloc bloc;
+
 	if (!_pcp.empty())
+	{
+		bloc = _pcp.back();
+		for (unsigned int i = 0; i < bloc.get_top().size() ; i++)
+			_top_string.pop_back();
+		for (unsigned int i = 0; i < bloc.get_bottom().size() ; i++)
+			_bot_string.pop_back();
 		_pcp.pop_back();
+	}
 }
 
 bool Pcp_solution::solve(int depth, Pcp_instance instance)
@@ -69,8 +91,7 @@ bool Pcp_solution::solve(int depth, Pcp_instance instance)
     {
 		if (is_bloc_possible(bloc))
 		{
-			if (!(_pcp.size() == 0 && bloc == Pcp_bloc("01", "0")))
-				push(bloc);
+			push(bloc);
 			if (solve(depth - 1, instance))
 				return (true);
 			pop();
@@ -79,12 +100,30 @@ bool Pcp_solution::solve(int depth, Pcp_instance instance)
     return (false);
 }
 
-# define Final_Threshold 100
-# define Starting_Threshold 10
-# define Depth_increment 20
+bool Pcp_solution::iterative_solve(Pcp_instance instance) {
+	int it_depth[3] = {4, 7, 20};
+	int idx = 0;
+	bool res;
+	do{
+		res = solve(it_depth[idx], instance);
+		idx++;
+	} while (!res && idx <= 2);
 
+	return res;
+
+}
+
+/*
+# define Final_Threshold 25
+# define Starting_Threshold 5
+// 10 in article
+# define Depth_increment 3
+// 20 in article
 bool Pcp_solution::iterative_solve(Pcp_instance instance) {
 	int threshold = Starting_Threshold;
+
+	_top_mask = instance.getTopmask();
+	_bot_mask = instance.getBotmask();
 
     bool res;
     do{
@@ -93,6 +132,8 @@ bool Pcp_solution::iterative_solve(Pcp_instance instance) {
     } while (!res && threshold <= Final_Threshold);
     return res;
 }
+*/
+
 
 std::ostream& operator<< (std::ostream& out,  Pcp_solution& v){
 	out << "[ "; for (auto x: v._pcp) out << x << ' '; out << ']';

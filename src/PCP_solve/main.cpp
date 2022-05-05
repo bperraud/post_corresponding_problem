@@ -2,28 +2,34 @@
 #include "pcp_instance.h"
 #include "pcp_solution.h"
 
-# define ITERATION 10000000
+# define ITERATION 300
 
 using namespace std;
 
 void generate_instance(int instance_size, int instance_width, int depth, int hard_mode = 0)
 {
 	int i = 0;
-
 	while (i++ < ITERATION)
 	{
 	    std::cout << i << std::endl;
 		Pcp_instance inst = Pcp_instance(instance_size, instance_width);
         inst.strip_duplicate();
+
 		if (!(inst.length_balance_filter() || inst.element_balance_filter() || inst.prefix_filter()) && (hard_mode ? !inst.has_symetrical() : 1))		    // if instance can have solution
 		{
-			Pcp_solution pcp = Pcp_solution();
-			if (pcp.iterative_solve(inst))
+			inst.mask_top();
+			inst.mask_bot();
+
+			if (!(inst.getTopmask() && inst.getBotmask()))
 			{
-				std::cout << "instance :" << inst << std::endl;
+				Pcp_solution pcp = Pcp_solution();
+				if (pcp.iterative_solve(inst))
+				{
+					cout << "instance :" << inst << endl;
 
-				std::cout << "solution :" << pcp << std::endl;
+					cout << "solution :" << pcp << endl;
 
+				}
 			}
 		}
 	}

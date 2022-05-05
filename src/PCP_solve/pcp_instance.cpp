@@ -123,7 +123,7 @@ void	Pcp_instance::mask_top()
 			if (copy.append(bbot.get_top()) == bbot.get_bottom())
 			{
 				reverse(config.begin(), config.end());
-				std::cout << "config" << config << std::endl;
+				//std::cout << "config" << config << std::endl;
 				Pcp_bloc bruh = Pcp_bloc(config, "");
 				config_top.push_back(bruh);
 			}
@@ -138,14 +138,14 @@ void	Pcp_instance::mask_top()
 		{
 			if (perfect_match(confi, bloc))
 			{
-				std::cout << "bloc" << bloc << std::endl;
+				//std::cout << "bloc" << bloc << std::endl;
 				pushable = 1;
 				break;
 			}
 		}
 		if (pushable == 0)
 		{
-			std::cout << "confi" << confi << std::endl;
+			//std::cout << "confi" << confi << std::endl;
 			_top_mask = 1;
 		}
 	}
@@ -172,7 +172,6 @@ void	Pcp_instance::mask_bot()
 			if (copy.append(btop.get_bottom()) == btop.get_top())
 			{
 				reverse(config.begin(), config.end());
-				std::cout << "config" << config << std::endl;
 				Pcp_bloc bruh = Pcp_bloc(config, "");
 				config_bot.push_back(bruh);
 			}
@@ -187,14 +186,12 @@ void	Pcp_instance::mask_bot()
 		{
 			if (perfect_match(confi, bloc))
 			{
-				std::cout << "bloc" << bloc << std::endl;
 				pushable = 1;
 				break;
 			}
 		}
 		if (pushable == 0)
 		{
-			std::cout << "confi" << confi << std::endl;
 			_bot_mask = 1;
 		}
 	}

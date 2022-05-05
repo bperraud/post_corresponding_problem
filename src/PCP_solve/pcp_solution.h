@@ -13,6 +13,13 @@ class Pcp_solution {
 	std::vector<Pcp_bloc> _best_pcp;
 	size_t	_best;
 
+	std::string _top_string;
+	std::string _bot_string;
+
+	bool	_top_mask;
+	bool	_bot_mask;
+
+
 public:
 	Pcp_solution (int best = 1000) {_best = best; }
 	inline size_t get_length(){ return _best; }
