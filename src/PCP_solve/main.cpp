@@ -2,7 +2,7 @@
 #include "pcp_instance.h"
 #include "pcp_solution.h"
 
-# define ITERATION 300
+# define ITERATION 500
 
 using namespace std;
 
@@ -39,11 +39,12 @@ void generate_instance(int instance_size, int instance_width, int depth, int har
 int main(void)
 {
 	//srand(time(0));					// set random seed
-
 	clock_t start, end;
 	start = clock();
 
-	srand(1);					// set random seed
+	//srand(1);					// set random seed best 5 sec = incr 5 ?
+	//srand(2);					// best incr 5
+	srand(2);
 
 	Pcp_solution pcp = Pcp_solution();
 	//Pcp_instance instance = Pcp_instance(2, 6);
@@ -54,10 +55,6 @@ int main(void)
 	Pcp_instance inst160 = {"01", "0", "00", "011", "1", "101", "001", "1"};
 
 	Pcp_instance botmask = {"0", "01", "011", "00", "101", "1", "1", "001"};
-
-	inst160.mask_top();
-
-	botmask.mask_bot();
 
 	/*
 	pcp.solve(161, instance);
@@ -71,13 +68,11 @@ int main(void)
 
 	// Recording the end clock tick.
 	end = clock();
-
 	// Calculating total time taken by the program.
 	double time_taken = double(end - start) / double(CLOCKS_PER_SEC);
 	cout << "Time taken by program is : " << fixed
 		 << time_taken << setprecision(7);
 	cout << " sec " << endl;
-
 }
 
 

@@ -20,19 +20,18 @@ class Pcp_bloc {
 public:
 	Pcp_bloc() noexcept = default;
 	Pcp_bloc (std::string, std::string);
-	// Getters
+	/* getters */
 	std::string get_top() {return _top;}
 	std::string get_bottom() {return _bottom;}
-	// Utils
+	/* utils */
 	bool has_prefix();
 	inline int top_less_bottom_len() {return _top.size() - _bottom.size();}
 	inline int bot_less_top_len() {return _bottom.size() - _top.size();}
 	inline int top_less_bottom_ones() {return std::count(_top.begin(), _top.end(), '1') - std::count(_bottom.begin(), _bottom.end(), '1');}
 	void generate_blocs(int);
-	// Operator
+	/* operators */
 	friend bool operator==(const Pcp_bloc& left, const Pcp_bloc& right);
-
-	// Output
+	/* output */
 	friend std::ostream& operator<< (std::ostream&, Pcp_bloc&);
 };
 

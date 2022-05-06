@@ -100,8 +100,12 @@ bool Pcp_solution::solve(int depth, Pcp_instance instance)
     return (false);
 }
 
+/*
 bool Pcp_solution::iterative_solve(Pcp_instance instance) {
 	int it_depth[3] = {4, 7, 20};
+
+	//int it_depth[3] = {3, 6, 20};
+
 	int idx = 0;
 	bool res;
 	do{
@@ -112,18 +116,16 @@ bool Pcp_solution::iterative_solve(Pcp_instance instance) {
 	return res;
 
 }
+ */
 
-/*
-# define Final_Threshold 25
-# define Starting_Threshold 5
+# define Final_Threshold 20
+# define Starting_Threshold 2
 // 10 in article
-# define Depth_increment 3
+# define Depth_increment 5
+// best for seed 1 = 5
 // 20 in article
 bool Pcp_solution::iterative_solve(Pcp_instance instance) {
 	int threshold = Starting_Threshold;
-
-	_top_mask = instance.getTopmask();
-	_bot_mask = instance.getBotmask();
 
     bool res;
     do{
@@ -132,7 +134,7 @@ bool Pcp_solution::iterative_solve(Pcp_instance instance) {
     } while (!res && threshold <= Final_Threshold);
     return res;
 }
-*/
+
 
 
 std::ostream& operator<< (std::ostream& out,  Pcp_solution& v){
